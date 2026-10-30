@@ -29,7 +29,7 @@ class StoreSettingsModel {
     this.storeEmail,
     this.logoPath,
     this.taxRate = 0.0,
-    this.currency = 'EGP',
+    this.currency = 'KES',
     this.invoicePrefix = 'INV',
     this.lastInvoiceNumber = 0,
     DateTime? createdAt,
@@ -84,7 +84,7 @@ class StoreSettingsModel {
       storeEmail: map['store_email'] as String?,
       logoPath: map['logo_path'] as String?,
       taxRate: (map['tax_rate'] as num?)?.toDouble() ?? 0.0,
-      currency: map['currency'] as String? ?? 'EGP',
+      currency: map['currency'] as String? ?? 'KES',
       invoicePrefix: map['invoice_prefix'] as String? ?? 'INV',
       lastInvoiceNumber: (map['last_invoice_number'] as int?) ?? 0,
       createdAt: DateTime.parse(map['created_at'] as String),
@@ -97,7 +97,7 @@ class StoreSettingsModel {
       storeName: 'Bayaa POS',
       storeAddress: 'Address not set',
       storePhone: '0000000000',
-      currency: 'EGP',
+      currency: 'KES',
       invoicePrefix: 'INV',
     );
   }

@@ -1,0 +1,45 @@
+================================================================================
+BAYAA POS - CRASH REPORT
+================================================================================
+Timestamp: 2026-10-30T13:46:18.923290
+Platform: windows "Windows 10 Pro" 10.0 (Build 22631)
+Dart Version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on "windows_x64"
+
+ERROR:
+--------------------------------------------------------------------------------
+Could not find a generator for route RouteSettings("/login", null) in the _WidgetsAppState.
+Make sure your root app widget has provided a way to generate
+this route.
+Generators for routes are searched for in the following order:
+ 1. For the "/" route, the "home" property, if non-null, is used.
+ 2. Otherwise, the "routes" table is used, if it has an entry for the route.
+ 3. Otherwise, onGenerateRoute is called. It should return a non-null value for any valid route not handled by "home" and "routes".
+ 4. Finally if all else fails onUnknownRoute is called.
+Unfortunately, onUnknownRoute was not set.
+
+CONTEXT:
+--------------------------------------------------------------------------------
+Unhandled async error
+
+STACK TRACE:
+--------------------------------------------------------------------------------
+#0      _WidgetsAppState._onUnknownRoute.<anonymous closure> (package:flutter/src/widgets/app.dart:1574:9)
+#1      _WidgetsAppState._onUnknownRoute (package:flutter/src/widgets/app.dart:1589:6)
+#2      NavigatorState._routeNamed (package:flutter/src/widgets/navigator.dart:4728:37)
+#3      NavigatorState.pushNamedAndRemoveUntil (package:flutter/src/widgets/navigator.dart:4990:35)
+#4      _SettingsScreenContent.build.<anonymous closure>.<anonymous closure> (package:bayaa_pos/features/settings/presentation/settings_screen.dart:80:22)
+#5      new Future.delayed.<anonymous closure> (dart:async/future.dart:448:42)
+#6      _rootRun (dart:async/zone_root.dart:27:47)
+#7      _CustomZone.run (dart:async/zone.dart:810:35)
+#8      _CustomZone.runGuarded (dart:async/zone.dart:702:7)
+#9      _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:743:23)
+#10     _rootRun (dart:async/zone_root.dart:35:13)
+#11     _CustomZone.run (dart:async/zone.dart:810:35)
+#12     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:726:23)
+#13     Timer._createTimer.<anonymous closure> (dart:async-patch/timer_patch.dart:18:15)
+#14     _Timer._runTimers (dart:isolate-patch/timer_impl.dart:423:19)
+#15     _Timer._handleMessage (dart:isolate-patch/timer_impl.dart:454:5)
+#16     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:12)
+
+
+================================================================================

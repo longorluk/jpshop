@@ -246,7 +246,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get currencyEg => 'EGP';
+  String get currencyEg => 'KES';
 
   @override
   String get salesTrendTitle => 'Sales Trend (Last 7 Days)';
@@ -1401,7 +1401,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String totalValueAmount(Object amount) {
-    return 'Total Value: $amount EGP';
+    return 'Total Value: $amount KES';
   }
 
   @override
@@ -1513,7 +1513,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String priceBelowMin(Object price) {
-    return 'Price is below minimum ($price EGP)';
+    return 'Price is below minimum ($price KES)';
   }
 
   @override

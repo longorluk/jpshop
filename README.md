@@ -240,5 +240,5 @@ For UI changes, also run the Windows application and verify both English and Ara
 This project is proprietary software. All rights reserved.
 
 <p align="center">
-  Built with Flutter by <a href="https://github.com/Desha29">Desha29</a>
+  Built with Flutter by <a href="https://github.com/Geofreybarasa">Barasa Geofrey</a>
 </p>

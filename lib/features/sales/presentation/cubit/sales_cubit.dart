@@ -280,7 +280,7 @@ class SalesCubit extends Cubit<SalesState> {
       print('DEBUG_CHECKOUT: Logging activity type=sale total=$total');
       await getIt<ActivityLogger>().logActivity(
         type: ActivityType.sale,
-        description: 'Sale: ${total.toStringAsFixed(2)} EGP',
+        description: 'Sale: ${total.toStringAsFixed(2)} KES',
         userName: userName,
         sessionId: sessionId,
         details: {

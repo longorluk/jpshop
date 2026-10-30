@@ -151,7 +151,7 @@ class InvoiceCubit extends Cubit<InvoiceState> {
       );
       await getIt<ActivityLogger>().logActivity(
         type: ActivityType.invoiceDelete,
-        description: 'Delete invoice: ${sale.total.toStringAsFixed(2)} EGP',
+        description: 'Delete invoice: ${sale.total.toStringAsFixed(2)} KES',
         userName: getIt<UserCubit>().currentUser.name,
         sessionId: sid,
         details: {'saleId': saleId, 'items': sale.items},
@@ -255,7 +255,7 @@ class InvoiceCubit extends Cubit<InvoiceState> {
     // 8. Log refund activity
     await getIt<ActivityLogger>().logActivity(
       type: ActivityType.refund,
-      description: 'Refund: ${refundTotal.toStringAsFixed(2)} EGP',
+      description: 'Refund: ${refundTotal.toStringAsFixed(2)} KES',
       userName: getIt<UserCubit>().currentUser.name,
       sessionId: session.id,
       details: {

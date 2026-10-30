@@ -382,7 +382,7 @@ class UserCubit extends Cubit<UserStates> {
       // Log activity with session
       await getIt<ActivityLogger>().logActivity(
         type: ActivityType.sessionClose,
-        description: 'Closed day: ${totalSales.toStringAsFixed(2)} EGP',
+        description: 'Closed day: ${totalSales.toStringAsFixed(2)} KES',
         userName: currentUser.name,
         sessionId: currentSessionToClose.id,
         eventKey: 'sessionClosed',

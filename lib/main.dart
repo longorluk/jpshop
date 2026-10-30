@@ -170,7 +170,7 @@ Future<void> _setupWindow() async {
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.normal,
-    title: 'Bayaa',
+    title: 'Baraka Stores',
   );
 
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
@@ -197,7 +197,7 @@ class MyApp extends StatelessWidget {
           child: MessageOverlay(
             child: MaterialApp(
               navigatorKey: navigatorKey,
-              title: localeProvider.isArabic ? 'بياع' : 'Bayaa POS',
+              title: localeProvider.isArabic ? 'Baraka stores' : 'Baraka stores',
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
               home: const LoginScreen(),

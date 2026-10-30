@@ -112,7 +112,7 @@ class SQLiteManager {
         'logo_path': 'TEXT',
         'tax_number': 'TEXT',
         'tax_rate': 'REAL DEFAULT 0.0',
-        'currency': "TEXT DEFAULT 'EGP'",
+        'currency': "TEXT DEFAULT 'KES'",
         'invoice_prefix': "TEXT DEFAULT 'INV'",
       };
 
@@ -250,7 +250,7 @@ class SQLiteManager {
         logo_path TEXT,
         tax_number TEXT,
         tax_rate REAL DEFAULT 0.0,
-        currency TEXT DEFAULT 'EGP',
+        currency TEXT DEFAULT 'KES',
         invoice_prefix TEXT DEFAULT 'INV',
         last_invoice_number INTEGER DEFAULT 0,
         created_at TEXT NOT NULL,
@@ -439,7 +439,7 @@ class SQLiteManager {
         created_at, updated_at
       ) VALUES (
         'store_settings_singleton', 'Bayaa POS', '', '',
-        'EGP', 'INV', 0,
+        'KES', 'INV', 0,
         '${DateTime.now().toIso8601String()}',
         '${DateTime.now().toIso8601String()}'
       )
