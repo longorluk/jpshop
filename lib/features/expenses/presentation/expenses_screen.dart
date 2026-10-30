@@ -160,8 +160,9 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
               label: Text(_isArabic ? 'حفظ المصروف' : 'Save expense'),
               onPressed: () async {
                 final value = double.tryParse(amount.text.trim());
-                if (title.text.trim().isEmpty || value == null || value <= 0)
+                if (title.text.trim().isEmpty || value == null || value <= 0) {
                   return;
+                }
                 await _repository.add(Expense(
                   id: 'expense_${DateTime.now().microsecondsSinceEpoch}',
                   title: title.text.trim(),

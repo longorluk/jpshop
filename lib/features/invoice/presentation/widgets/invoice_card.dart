@@ -15,14 +15,14 @@ class InvoiceCard extends StatefulWidget {
   final bool isManager;
 
   const InvoiceCard({
-    Key? key,
+    super.key,
     required this.sale,
     required this.onOpen,
     this.onReturn,
     required this.onPrint,
     this.onDelete,
     required this.isManager,
-  }) : super(key: key);
+  });
 
   @override
   State<InvoiceCard> createState() => _InvoiceCardState();
@@ -312,10 +312,11 @@ class _InvoiceCardState extends State<InvoiceCard> {
             const Spacer(),
             ...List.generate(_buildActions().length, (i) {
               final actions = _buildActions();
-              if (i > 0)
+              if (i > 0) {
                 return Padding(
                     padding: const EdgeInsets.only(right: 6),
                     child: actions[i]);
+              }
               return actions[i];
             }),
           ],

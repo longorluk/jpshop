@@ -337,8 +337,9 @@ class ActivityLogger {
 
         case ActivityType.productUpdate:
         case ActivityType.productQuantityUpdate:
-          if (details['name'] != null)
+          if (details['name'] != null) {
             parts.add(l10n.detailsProduct(details['name'].toString()));
+          }
           if (details['oldQty'] != null && details['newQty'] != null) {
             parts.add(l10n.detailsQty(
                 details['oldQty'].toString(), details['newQty'].toString()));
@@ -350,15 +351,18 @@ class ActivityLogger {
           break;
 
         case ActivityType.restock:
-          if (details['productName'] != null)
+          if (details['productName'] != null) {
             parts.add(l10n.detailsProduct(details['productName'].toString()));
-          if (details['addedQty'] != null)
+          }
+          if (details['addedQty'] != null) {
             parts.add(l10n.detailsAddedQty(details['addedQty'].toString()));
+          }
           break;
 
         case ActivityType.expense:
-          if (details['category'] != null)
+          if (details['category'] != null) {
             parts.add(l10n.detailsCategory(details['category'].toString()));
+          }
           if (details['amount'] != null) {
             parts.add(l10n.detailsAmount(
                 details['amount'].toString(), l10n.currencyEg));
@@ -368,10 +372,12 @@ class ActivityLogger {
         case ActivityType.userAdd:
         case ActivityType.userUpdate:
         case ActivityType.userDelete:
-          if (details['targetUser'] != null)
+          if (details['targetUser'] != null) {
             parts.add(l10n.detailsUser(details['targetUser'].toString()));
-          if (details['role'] != null)
+          }
+          if (details['role'] != null) {
             parts.add(l10n.detailsRole(details['role'].toString()));
+          }
           break;
 
         default:
@@ -448,10 +454,12 @@ class ActivityLogger {
         TranslationHelper.translateUserName(context, activity.userName);
 
     if (desc.startsWith('فتح يوم')) return l10n.activitySessionOpened(user);
-    if (desc.startsWith('إغلاق يوم') || desc.contains('إغلاق يوم'))
+    if (desc.startsWith('إغلاق يوم') || desc.contains('إغلاق يوم')) {
       return l10n.activitySessionClosed(user);
-    if (desc == 'تسجيل دخول' || desc.startsWith('تسجيل دخول'))
+    }
+    if (desc == 'تسجيل دخول' || desc.startsWith('تسجيل دخول')) {
       return l10n.activityLogin(user);
+    }
     if (desc.startsWith('إضافة منتج')) {
       final name = desc.replaceFirst('إضافة منتج: ', '');
       return l10n.activityProductAdded(user, name);
@@ -484,14 +492,16 @@ class ActivityLogger {
       final name = desc.replaceFirst('حذف مستخدم: ', '');
       return l10n.activityUserDeleted(user, name);
     }
-    if (desc.startsWith('حذف فاتورة'))
+    if (desc.startsWith('حذف فاتورة')) {
       return l10n.activityInvoiceDeleted(user, '');
+    }
     if (desc.startsWith('تحديث مخزون')) {
       final name = desc.replaceFirst('تحديث مخزون: ', '').split(' ').first;
       return l10n.activityProductQtyUpdated(user, name, '');
     }
-    if (desc.startsWith('تحديث معلومات المتجر'))
+    if (desc.startsWith('تحديث معلومات المتجر')) {
       return l10n.activityUserUpdated(user, 'store info');
+    }
 
     return desc;
   }

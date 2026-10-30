@@ -253,9 +253,9 @@ class DailyReportPdfService {
       return [
         p.productName,
         p.quantitySold.toString(),
-        '${p.revenue.toStringAsFixed(2)}',
-        '${p.cost.toStringAsFixed(2)}',
-        '${p.profit.toStringAsFixed(2)}',
+        (p.revenue.toStringAsFixed(2)),
+        (p.cost.toStringAsFixed(2)),
+        (p.profit.toStringAsFixed(2)),
         '${p.profitMargin.toStringAsFixed(1)}%',
       ];
     }).toList();
@@ -331,10 +331,12 @@ class DailyReportPdfService {
       '${dateTime.day.toString().padLeft(2, '0')}/${dateTime.month.toString().padLeft(2, '0')}/${dateTime.year} - ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
 
   static String _translateUserName(String name, AppLocalizations l10n) {
-    if (name == 'System Administrator' || name == 'مدير النظام')
+    if (name == 'System Administrator' || name == 'مدير النظام') {
       return l10n.roleManager;
-    if (name == 'Trial Cashier' || name == 'كاشير تجريبي')
+    }
+    if (name == 'Trial Cashier' || name == 'كاشير تجريبي') {
       return l10n.trialCashier;
+    }
     return name;
   }
 }

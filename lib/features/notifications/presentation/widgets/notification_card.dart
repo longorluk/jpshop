@@ -78,8 +78,9 @@ class NotificationCard extends StatelessWidget {
   String _getMessage(AppLocalizations l10n) {
     final name = item.productName ?? item.sku;
     final qty = item.productQuantity?.toString() ?? '0';
-    if (item.notifyType == NotifyType.outOfStock)
+    if (item.notifyType == NotifyType.outOfStock) {
       return l10n.notificationOutOfStockMessage(name);
+    }
     return l10n.notificationLowStockMessage(qty, name);
   }
 

@@ -190,7 +190,7 @@ class EnhancedProductCard extends StatelessWidget {
                       Text(l10n.wholesalePrice, style: TextStyle(fontSize: small, color: AppColors.mutedColor)),
                       const SizedBox(height: 2),
                       Text(
-                        "${product.wholesalePrice.toStringAsFixed(2)}",
+                        product.wholesalePrice.toStringAsFixed(2),
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: value, color: AppColors.accentGold),
                       ),
                     ],
@@ -203,7 +203,7 @@ class EnhancedProductCard extends StatelessWidget {
                       Text(l10n.minPriceColumn, style: TextStyle(fontSize: small, color: AppColors.mutedColor)),
                       const SizedBox(height: 2),
                       Text(
-                        "${product.minPrice.toStringAsFixed(2)}",
+                        product.minPrice.toStringAsFixed(2),
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: value, color: Colors.deepOrange),
                       ),
                     ],

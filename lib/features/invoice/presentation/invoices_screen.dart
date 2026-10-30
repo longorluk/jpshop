@@ -29,10 +29,10 @@ class InvoiceScreen extends StatefulWidget {
   final User currentUser;
 
   const InvoiceScreen({
-    Key? key,
+    super.key,
     required this.repository,
     required this.currentUser,
-  }) : super(key: key);
+  });
 
   @override
   State<InvoiceScreen> createState() => _InvoiceScreenState();

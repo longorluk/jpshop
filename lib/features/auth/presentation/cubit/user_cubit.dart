@@ -56,10 +56,12 @@ class UserCubit extends Cubit<UserStates> {
 
         // Sort: Managers first
         usersList.sort((a, b) {
-          if (a.userType == UserType.manager && b.userType != UserType.manager)
+          if (a.userType == UserType.manager && b.userType != UserType.manager) {
             return -1;
-          if (a.userType != UserType.manager && b.userType == UserType.manager)
+          }
+          if (a.userType != UserType.manager && b.userType == UserType.manager) {
             return 1;
+          }
           return 0;
         });
         _users = usersList;
@@ -175,8 +177,8 @@ class UserCubit extends Cubit<UserStates> {
     result.fold(
       (failure) => emit(UserFailure(failure.message)),
       (user) async {
-        print("🔐 Login Attempt: '${trimmedUsername}'");
-        print("   Input Password: '${trimmedPassword}'");
+        print("🔐 Login Attempt: '$trimmedUsername'");
+        print("   Input Password: '$trimmedPassword'");
         print("   Stored Password: '${user.password}'");
 
         if (user.password == trimmedPassword) {

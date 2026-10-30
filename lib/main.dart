@@ -1,5 +1,3 @@
-import 'package:bayaa_pos/features/activation/activation_screen.dart'
-    show ActivationScreen;
 import 'package:bayaa_pos/features/auth/presentation/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +17,6 @@ import 'core/logging/file_logger.dart';
 import 'core/logging/crash_logger.dart';
 import 'features/auth/presentation/cubit/user_cubit.dart';
 import 'features/auth/presentation/cubit/user_states.dart';
-import 'secrets.dart';
 import 'core/data/services/persistence_initializer.dart';
 import 'features/sessions/data/repositories/session_repository_impl.dart';
 import 'core/services/activity_logger.dart';
@@ -132,15 +129,9 @@ void main() async {
               error: e, stackTrace: stack, source: 'Main');
         }
 
-        // 4. Check activation and Run App
-        bool fileExists = await File(requiredFilePath).exists();
-        if (fileExists) {
-          FileLogger.info('App starting normally', source: 'Main');
-          runApp(const MyApp());
-        } else {
-          FileLogger.info('App starting in activation mode', source: 'Main');
-          runApp(const ActivationScreen());
-        }
+        // 4. Run App directly
+        FileLogger.info('App starting normally', source: 'Main');
+        runApp(const MyApp());
       } catch (e, stack) {
         FileLogger.critical('Critical startup error',
             error: e, stackTrace: stack, source: 'Main');

@@ -16,6 +16,7 @@ class TotalSectionCard extends StatelessWidget {
     this.onClearCart,
   });
 
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return TweenAnimationBuilder<double>(

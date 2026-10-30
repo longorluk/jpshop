@@ -109,7 +109,7 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
     unread = 0;
     opened = total;
     selected.clear();
-    filterData(this.filter);
+    filterData(filter);
   }
 
   markItemAsRead(String id) {
@@ -124,7 +124,7 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
       opened--;
     }
     selected.remove(id);
-    filterData(this.filter);
+    filterData(filter);
   }
 
   removeItem(String id) {
@@ -133,17 +133,17 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
     unread = _notifications.where((e) => !e.read).length;
     opened = total - unread;
     selected.remove(id);
-    filterData(this.filter);
+    filterData(filter);
   }
 
   addSelected(String id) {
     selected.add(id);
-    filterData(this.filter);
+    filterData(filter);
   }
 
   removeSelectedId(String id) {
     selected.remove(id);
-    filterData(this.filter);
+    filterData(filter);
   }
 
   removeSelected() {
@@ -152,6 +152,6 @@ class NotificationsCubit extends Cubit<NotificationsStates> {
     unread = _notifications.where((e) => !e.read).length;
     opened = total - unread;
     selected.clear();
-    filterData(this.filter);
+    filterData(filter);
   }
 }

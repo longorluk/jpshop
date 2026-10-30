@@ -18,7 +18,7 @@ class InvoiceListSection extends StatelessWidget {
   final bool isManager;
 
   const InvoiceListSection({
-    Key? key,
+    super.key,
     required this.loading,
     required this.sales,
     required this.startDate,
@@ -29,7 +29,7 @@ class InvoiceListSection extends StatelessWidget {
     required this.onReturnSale,
     required this.onPrintInvoice,
     required this.isManager,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

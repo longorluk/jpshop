@@ -17,7 +17,7 @@ import '../../../../core/di/dependency_injection.dart';
 class DailyReportScreen extends StatefulWidget {
   final DailyReport? initialReport;
 
-  const DailyReportScreen({Key? key, this.initialReport}) : super(key: key);
+  const DailyReportScreen({super.key, this.initialReport});
 
   @override
   State<DailyReportScreen> createState() => _DailyReportScreenState();
