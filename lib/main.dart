@@ -1,9 +1,9 @@
-import 'package:bayaa_pos/features/auth/presentation/login_screen.dart';
+import 'package:barasa_softwares/features/auth/presentation/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
-import 'package:bayaa_pos/core/localization/locale_provider.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/localization/locale_provider.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'dart:io';
@@ -201,11 +201,9 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
               home: const LoginScreen(),
-              locale: localeProvider.locale,
-              supportedLocales: const [
-                Locale('ar'),
-                Locale('en'),
-              ],
+              // Expose English as the app's only selectable locale.
+              locale: const Locale('en'),
+              supportedLocales: const [Locale('en')],
               localizationsDelegates: [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,

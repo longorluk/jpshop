@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:bayaa_pos/core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
 
 class ActivationScreen extends StatelessWidget {
   const ActivationScreen({super.key});
@@ -168,7 +168,7 @@ class ActivationScreen extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   Text(
-                    '© 2026 Bayaa POS. All rights reserved',
+                    '© 2026 Barasa_softwares. All rights reserved',
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall

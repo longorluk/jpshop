@@ -1,10 +1,10 @@
-import 'package:bayaa_pos/core/di/dependency_injection.dart';
-import 'package:bayaa_pos/core/components/local_image_view.dart';
-import 'package:bayaa_pos/core/data/services/local_image_storage.dart';
-import 'package:bayaa_pos/features/auth/presentation/cubit/user_cubit.dart';
+import 'package:barasa_softwares/core/di/dependency_injection.dart';
+import 'package:barasa_softwares/core/components/local_image_view.dart';
+import 'package:barasa_softwares/core/data/services/local_image_storage.dart';
+import 'package:barasa_softwares/features/auth/presentation/cubit/user_cubit.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:bayaa_pos/features/auth/data/models/user_model.dart';
+import 'package:barasa_softwares/features/auth/data/models/user_model.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/functions/messege.dart';
 import '../../../../l10n/app_localizations.dart';

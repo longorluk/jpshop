@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Bayaa Brand Colors
+  // barasa_softwares Brand Colors
   static const Color primaryColor =
       Color(0xFF1E3A8A); // Primary Blue (AppBar, Headers)
   static const Color sidebarColor = Color(0xFF182E45); // Dashboard navigation

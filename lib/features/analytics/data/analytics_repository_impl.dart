@@ -1,16 +1,16 @@
 // lib/features/analytics/data/analytics_repository_impl.dart
 
-import 'package:bayaa_pos/core/data/services/persistence_initializer.dart';
-import 'package:bayaa_pos/core/data/services/repository_persistence_mixin.dart';
+import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
+import 'package:barasa_softwares/core/data/services/repository_persistence_mixin.dart';
 import 'package:dartz/dartz.dart';
-import 'package:bayaa_pos/core/di/dependency_injection.dart';
+import 'package:barasa_softwares/core/di/dependency_injection.dart';
 import '../../../core/error/failure.dart';
 import '../../sales/domain/sales_repository.dart';
 import '../domain/analytics_repository.dart';
 import 'models/analytics_summary_model.dart';
 import '../../sessions/data/models/daily_report_model.dart';
 import '../../sessions/data/models/product_performance_model.dart';
-import 'package:bayaa_pos/features/sales/data/models/sale_model.dart';
+import 'package:barasa_softwares/features/sales/data/models/sale_model.dart';
 
 import '../../sessions/data/repositories/session_repository_impl.dart';
 

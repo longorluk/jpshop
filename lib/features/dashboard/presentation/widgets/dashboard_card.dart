@@ -1,11 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
 
-import 'package:bayaa_pos/features/products/presentation/cubit/product_cubit.dart';
-import 'package:bayaa_pos/features/stock/presentation/cubit/stock_cubit.dart';
-import 'package:bayaa_pos/features/products/presentation/cubit/product_states.dart';
-import 'package:bayaa_pos/features/stock/presentation/cubit/stock_states.dart';
-import 'package:bayaa_pos/features/notifications/presentation/cubit/notifications_states.dart';
+import 'package:barasa_softwares/features/products/presentation/cubit/product_cubit.dart';
+import 'package:barasa_softwares/features/stock/presentation/cubit/stock_cubit.dart';
+import 'package:barasa_softwares/features/products/presentation/cubit/product_states.dart';
+import 'package:barasa_softwares/features/stock/presentation/cubit/stock_states.dart';
+import 'package:barasa_softwares/features/notifications/presentation/cubit/notifications_states.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,7 +1,7 @@
-import 'package:bayaa_pos/core/constants/app_colors.dart';
-import 'package:bayaa_pos/features/auth/data/models/user_model.dart';
-import 'package:bayaa_pos/features/auth/presentation/cubit/user_cubit.dart';
-import 'package:bayaa_pos/features/products/presentation/widgets/enhanced_add_edit_Dialog.dart'
+import 'package:barasa_softwares/core/constants/app_colors.dart';
+import 'package:barasa_softwares/features/auth/data/models/user_model.dart';
+import 'package:barasa_softwares/features/auth/presentation/cubit/user_cubit.dart';
+import 'package:barasa_softwares/features/products/presentation/widgets/enhanced_add_edit_Dialog.dart'
     show AddCategories;
 import 'package:flutter/material.dart';
 

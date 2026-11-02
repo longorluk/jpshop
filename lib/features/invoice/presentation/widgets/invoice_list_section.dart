@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../sales/data/models/sale_model.dart';
 import 'invoice_card.dart';
 
-import 'package:bayaa_pos/core/constants/app_colors.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 
 class InvoiceListSection extends StatelessWidget {
   final bool loading;

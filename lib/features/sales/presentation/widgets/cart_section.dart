@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import 'cart_item.dart';

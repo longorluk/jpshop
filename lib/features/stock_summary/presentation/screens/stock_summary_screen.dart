@@ -1,18 +1,18 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:bayaa_pos/l10n/app_localizations.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import 'package:bayaa_pos/core/constants/app_colors.dart';
-import 'package:bayaa_pos/core/components/screen_header.dart';
-import 'package:bayaa_pos/features/stock_summary/data/models/stock_summary_category_model.dart';
-import 'package:bayaa_pos/features/stock_summary/presentation/cubit/stock_summary_cubit.dart';
-import 'package:bayaa_pos/features/stock_summary/presentation/cubit/stock_summary_state.dart';
-import 'package:bayaa_pos/features/stock_summary/presentation/widgets/product_details_dialog.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/components/screen_header.dart';
+import 'package:barasa_softwares/features/stock_summary/data/models/stock_summary_category_model.dart';
+import 'package:barasa_softwares/features/stock_summary/presentation/cubit/stock_summary_cubit.dart';
+import 'package:barasa_softwares/features/stock_summary/presentation/cubit/stock_summary_state.dart';
+import 'package:barasa_softwares/features/stock_summary/presentation/widgets/product_details_dialog.dart';
 
 class StockSummaryScreen extends StatefulWidget {
   const StockSummaryScreen({super.key});

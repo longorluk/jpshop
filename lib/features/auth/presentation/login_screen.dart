@@ -1,14 +1,13 @@
 // ignore_for_file: use_build_context_synchronously, deprecated_member_use
 
-import 'package:bayaa_pos/core/constants/app_colors.dart';
-import 'package:bayaa_pos/core/di/dependency_injection.dart';
-import 'package:bayaa_pos/core/functions/messege.dart';
-import 'package:bayaa_pos/core/localization/translation_helper.dart';
-import 'package:bayaa_pos/features/auth/data/models/user_model.dart';
-import 'package:bayaa_pos/features/settings/presentation/cubit/settings_cubit.dart';
-import 'package:bayaa_pos/core/components/app_logo.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
-import 'package:bayaa_pos/core/localization/locale_provider.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/di/dependency_injection.dart';
+import 'package:barasa_softwares/core/functions/messege.dart';
+import 'package:barasa_softwares/core/localization/translation_helper.dart';
+import 'package:barasa_softwares/features/auth/data/models/user_model.dart';
+import 'package:barasa_softwares/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:barasa_softwares/core/components/app_logo.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -164,30 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Language Toggle Row
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox.shrink(),
-            TextButton.icon(
-              icon: const Icon(Icons.language,
-                  size: 18, color: Color(0xFFD77E46)),
-              label: Text(
-                l10n.localeName == 'ar'
-                    ? l10n.switchToEnglish
-                    : l10n.switchToArabic,
-                style: const TextStyle(
-                  fontFamily: 'Cairo',
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFD77E46),
-                ),
-              ),
-              onPressed: () {
-                getIt<LocaleProvider>().toggleLocale();
-              },
-            ),
-          ],
-        ),
+        // Language switching is intentionally unavailable while Arabic is disabled.
         const SizedBox(height: 8),
 
         // Welcome text

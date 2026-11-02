@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bayaa_pos/core/data/services/persistence_initializer.dart';
-import 'package:bayaa_pos/core/functions/messege.dart';
+import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
+import 'package:barasa_softwares/core/functions/messege.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class DataProtectionCard extends StatefulWidget {

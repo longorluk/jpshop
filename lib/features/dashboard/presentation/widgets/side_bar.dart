@@ -1,8 +1,8 @@
 // ignore_for_file: deprecated_member_use
-import 'package:bayaa_pos/core/functions/messege.dart';
-import 'package:bayaa_pos/features/notifications/presentation/cubit/notifications_states.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
-import 'package:bayaa_pos/core/localization/locale_provider.dart';
+import 'package:barasa_softwares/core/functions/messege.dart';
+import 'package:barasa_softwares/features/notifications/presentation/cubit/notifications_states.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/localization/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';

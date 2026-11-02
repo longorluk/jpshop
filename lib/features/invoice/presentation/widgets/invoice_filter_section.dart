@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../cubit/invoice_state.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 
 class InvoiceFilterSection extends StatelessWidget {
   final bool isDesktop;

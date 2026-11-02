@@ -4,10 +4,11 @@ import 'package:path/path.dart' as path;
 import '../data/services/persistence_initializer.dart';
 
 class LocaleProvider extends ChangeNotifier {
-  Locale _locale = const Locale('ar');
+  // Arabic is disabled in the application UI; always start in English.
+  Locale _locale = const Locale('en');
 
   Locale get locale => _locale;
-  bool get isArabic => _locale.languageCode == 'ar';
+  bool get isArabic => false;
 
   LocaleProvider() {
     _loadPersistedLocale();
@@ -28,9 +29,9 @@ class LocaleProvider extends ChangeNotifier {
         final file = File(filePath);
         if (await file.exists()) {
           final lang = (await file.readAsString()).trim();
-          if (lang == 'en' || lang == 'ar') {
-            _locale = Locale(lang);
-            notifyListeners();
+          // Ignore legacy Arabic preferences and normalize them to English.
+          if (lang != 'en') {
+            await file.writeAsString('en');
           }
         }
       }
@@ -40,15 +41,20 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   Future<void> setLocale(Locale locale) async {
-    if (_locale == locale) return;
-    _locale = locale;
-    notifyListeners();
+    // Keep this provider English-only even if older callers request Arabic.
+    final englishLocale = locale.languageCode == 'en'
+        ? locale
+        : const Locale('en');
+    if (_locale != englishLocale) {
+      _locale = englishLocale;
+      notifyListeners();
+    }
 
     try {
       final filePath = _getFilePath();
       if (filePath.isNotEmpty) {
         final file = File(filePath);
-        await file.writeAsString(locale.languageCode);
+        await file.writeAsString('en');
       }
     } catch (e) {
       // Silently ignore save errors
@@ -56,10 +62,7 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   void toggleLocale() {
-    if (isArabic) {
-      setLocale(const Locale('en'));
-    } else {
-      setLocale(const Locale('ar'));
-    }
+    // Retained for compatibility with any existing callers; Arabic is disabled.
+    setLocale(const Locale('en'));
   }
 }

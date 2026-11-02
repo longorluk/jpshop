@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Bayaa" "\0"
-            VALUE "FileDescription", "Bayaa Desktop POS" "\0"
+            VALUE "CompanyName", "barasa_softwares" "\0"
+            VALUE "FileDescription", "barasa_softwares Desktop POS" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "bayaa" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 Bayaa. All rights reserved." "\0"
-            VALUE "OriginalFilename", "Bayaa.exe" "\0"
-            VALUE "ProductName", "Bayaa" "\0"
+            VALUE "InternalName", "barasa_softwares" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 barasa_softwares. All rights reserved." "\0"
+            VALUE "OriginalFilename", "barasa_softwares.exe" "\0"
+            VALUE "ProductName", "barasa_softwares" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

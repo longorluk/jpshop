@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bayaa_pos/features/products/data/models/product_model.dart';
-import 'package:bayaa_pos/core/constants/app_colors.dart';
+import 'package:barasa_softwares/features/products/data/models/product_model.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
 import '../../../../core/components/local_image_view.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../l10n/app_localizations.dart';

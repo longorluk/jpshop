@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:bayaa_pos/features/sales/data/models/sale_model.dart';
-import 'package:bayaa_pos/features/settings/data/models/store_info_model.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
+import 'package:barasa_softwares/features/sales/data/models/sale_model.dart';
+import 'package:barasa_softwares/features/settings/data/models/store_info_model.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 
 class ReceiptPdfGenerator {
   static Future<Uint8List> generateReceipt({

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:bayaa_pos/core/components/app_logo.dart';
+import 'package:barasa_softwares/core/components/app_logo.dart';
 
 import '../../../../core/functions/messege.dart';
 
@@ -14,9 +14,9 @@ import '../cubit/settings_cubit.dart';
 import '../cubit/settings_states.dart';
 import 'edit_store_info_dialog.dart';
 
-import 'package:bayaa_pos/core/localization/translation_helper.dart';
+import 'package:barasa_softwares/core/localization/translation_helper.dart';
 
-import 'package:bayaa_pos/core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
 
 class StoreInfoCard extends StatelessWidget {
   const StoreInfoCard({
@@ -287,7 +287,7 @@ class StoreInfoCard extends StatelessWidget {
       _StoreInfoRow(
         icon: LucideIcons.store,
         label: l10n.storeName,
-        value: (store.name == 'Bayaa POS' || store.name.isEmpty)
+        value: (store.name == 'barasa_softwares' || store.name.isEmpty)
             ? l10n.appName
             : store.name,
       ),

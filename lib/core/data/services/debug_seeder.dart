@@ -1,6 +1,6 @@
 // lib/core/data/services/debug_seeder.dart
 
-import 'package:bayaa_pos/core/data/services/persistence_initializer.dart';
+import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DebugSeeder {

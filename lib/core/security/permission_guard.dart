@@ -1,4 +1,4 @@
-import 'package:bayaa_pos/features/auth/data/models/user_model.dart';
+import 'package:barasa_softwares/features/auth/data/models/user_model.dart';
 
 class PermissionDeniedException implements Exception {
   final String message;

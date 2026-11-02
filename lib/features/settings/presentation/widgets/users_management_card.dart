@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
 // users_management_card.dart
-import 'package:bayaa_pos/core/di/dependency_injection.dart';
+import 'package:barasa_softwares/core/di/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -14,9 +14,9 @@ import '../../data/models/user_row.dart';
 import 'desktop_user_table.dart';
 import 'add_edit_user_dialog.dart';
 
-import 'package:bayaa_pos/core/localization/translation_helper.dart';
+import 'package:barasa_softwares/core/localization/translation_helper.dart';
 
-import 'package:bayaa_pos/core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
 
 class UsersManagementCard extends StatelessWidget {
   const UsersManagementCard({

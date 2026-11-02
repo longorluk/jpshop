@@ -85,7 +85,7 @@ class DailyReportPdfService {
                 font: boldFont,
                 fontWeight: pw.FontWeight.bold,
                 fontSize: 22,
-                color: PdfColor.fromInt(0xFF1E3A8A), // Bayaa Primary Blue
+                color: PdfColor.fromInt(0xFF1E3A8A), // barasa_softwares Primary Blue
               ),
             ),
             pw.SizedBox(height: 6),
@@ -315,7 +315,7 @@ class DailyReportPdfService {
         ),
         pw.SizedBox(height: 3),
         pw.Text(
-          '© 2026 Bayaa POS - ${l10n.allRightsReserved}',
+          '© 2026 barasa_softwares - ${l10n.allRightsReserved}',
           style: pw.TextStyle(
               font: font, fontSize: 10, color: PdfAppColors.mutedColor700),
         ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:bayaa_pos/core/components/app_logo.dart';
+import 'package:barasa_softwares/core/components/app_logo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/settings/presentation/cubit/settings_cubit.dart';
 import '../../features/settings/presentation/cubit/settings_states.dart';
 import '../di/dependency_injection.dart';
-import 'package:bayaa_pos/l10n/app_localizations.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 
 class Logo extends StatefulWidget {
   const Logo({

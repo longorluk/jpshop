@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:bayaa_pos/core/components/screen_header.dart';
-import 'package:bayaa_pos/core/constants/app_colors.dart';
-import 'package:bayaa_pos/features/auth/presentation/cubit/user_cubit.dart';
+import 'package:barasa_softwares/core/components/screen_header.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
+import 'package:barasa_softwares/features/auth/presentation/cubit/user_cubit.dart';
 
-import 'package:bayaa_pos/features/settings/presentation/cubit/settings_cubit.dart';
-import 'package:bayaa_pos/core/functions/messege.dart';
+import 'package:barasa_softwares/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:barasa_softwares/core/functions/messege.dart';
 import '../../../core/di/dependency_injection.dart';
 
 import '../../../l10n/app_localizations.dart';
@@ -22,7 +22,7 @@ import 'widgets/close_day_card.dart';
 import 'widgets/data_management_card.dart'; // New Import
 // import 'widgets/data_protection_card.dart'; // Commented out as in user code
 
-import 'package:bayaa_pos/core/localization/translation_helper.dart';
+import 'package:barasa_softwares/core/localization/translation_helper.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

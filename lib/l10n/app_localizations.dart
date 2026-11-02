@@ -3906,7 +3906,7 @@ abstract class AppLocalizations {
   /// No description provided for @advancedPosSystem.
   ///
   /// In ar, this message translates to:
-  /// **'نظام نقاط البيع المتطور - Bayaa'**
+  /// **'نظام نقاط البيع المتطور - barasa_softwares'**
   String get advancedPosSystem;
 
   /// No description provided for @reportDateLabel.

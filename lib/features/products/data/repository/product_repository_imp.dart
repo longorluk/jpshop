@@ -1,12 +1,12 @@
 // ignore_for_file: avoid_print
 
-import 'package:bayaa_pos/core/data/services/persistence_initializer.dart';
-import 'package:bayaa_pos/core/data/services/repository_persistence_mixin.dart';
-import 'package:bayaa_pos/core/error/failure.dart';
-import 'package:bayaa_pos/core/error/error_handler.dart';
-import 'package:bayaa_pos/core/state/state_synchronizer.dart';
-import 'package:bayaa_pos/features/products/data/models/product_model.dart';
-import 'package:bayaa_pos/features/products/domain/product_repository_int.dart';
+import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
+import 'package:barasa_softwares/core/data/services/repository_persistence_mixin.dart';
+import 'package:barasa_softwares/core/error/failure.dart';
+import 'package:barasa_softwares/core/error/error_handler.dart';
+import 'package:barasa_softwares/core/state/state_synchronizer.dart';
+import 'package:barasa_softwares/features/products/data/models/product_model.dart';
+import 'package:barasa_softwares/features/products/domain/product_repository_int.dart';
 import 'package:either_dart/either.dart';
 
 class ProductRepositoryImp extends ProductRepositoryInt with RepositoryPersistenceMixin {

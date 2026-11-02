@@ -1,5 +1,5 @@
 ================================================================================
-BAYAA POS - CRASH REPORT
+barasa_softwares - CRASH REPORT
 ================================================================================
 Timestamp: 2026-10-30T13:46:18.923290
 Platform: windows "Windows 10 Pro" 10.0 (Build 22631)
@@ -27,7 +27,7 @@ STACK TRACE:
 #1      _WidgetsAppState._onUnknownRoute (package:flutter/src/widgets/app.dart:1589:6)
 #2      NavigatorState._routeNamed (package:flutter/src/widgets/navigator.dart:4728:37)
 #3      NavigatorState.pushNamedAndRemoveUntil (package:flutter/src/widgets/navigator.dart:4990:35)
-#4      _SettingsScreenContent.build.<anonymous closure>.<anonymous closure> (package:bayaa_pos/features/settings/presentation/settings_screen.dart:80:22)
+#4      _SettingsScreenContent.build.<anonymous closure>.<anonymous closure> (package:barasa_softwares/features/settings/presentation/settings_screen.dart:80:22)
 #5      new Future.delayed.<anonymous closure> (dart:async/future.dart:448:42)
 #6      _rootRun (dart:async/zone_root.dart:27:47)
 #7      _CustomZone.run (dart:async/zone.dart:810:35)

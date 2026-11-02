@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bayaa_pos/core/components/screen_header.dart';
+import 'package:barasa_softwares/core/components/screen_header.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';

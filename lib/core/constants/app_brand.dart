@@ -1,3 +1,3 @@
 class AppBrand {
-  static const String name = 'Bayaa';
+  static const String name = 'Barasa Softwares';
 }

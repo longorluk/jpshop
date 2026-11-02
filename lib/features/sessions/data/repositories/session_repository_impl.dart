@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_print
 
-import 'package:bayaa_pos/core/data/services/persistence_initializer.dart';
-import 'package:bayaa_pos/core/data/services/repository_persistence_mixin.dart';
+import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
+import 'package:barasa_softwares/core/data/services/repository_persistence_mixin.dart';
 
-import 'package:bayaa_pos/features/auth/data/models/user_model.dart';
-import 'package:bayaa_pos/features/sales/data/models/sale_model.dart';
+import 'package:barasa_softwares/features/auth/data/models/user_model.dart';
+import 'package:barasa_softwares/features/sales/data/models/sale_model.dart';
 import '../models/daily_report_model.dart';
 import '../models/product_performance_model.dart';
 

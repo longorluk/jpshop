@@ -1,4 +1,4 @@
-import 'package:bayaa_pos/features/products/data/models/product_model.dart';
+import 'package:barasa_softwares/features/products/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/components/empty_state.dart';
 import '../../../../l10n/app_localizations.dart';

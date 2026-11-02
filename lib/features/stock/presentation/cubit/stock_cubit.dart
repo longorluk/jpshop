@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:bayaa_pos/features/products/data/models/product_model.dart';
-import 'package:bayaa_pos/features/products/domain/product_repository_int.dart';
-import 'package:bayaa_pos/features/stock/presentation/cubit/stock_states.dart'
+import 'package:barasa_softwares/features/products/data/models/product_model.dart';
+import 'package:barasa_softwares/features/products/domain/product_repository_int.dart';
+import 'package:barasa_softwares/features/stock/presentation/cubit/stock_states.dart'
     show StockErrorState, StockLoadingState, StockStates, StockSucssesState;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/dependency_injection.dart';

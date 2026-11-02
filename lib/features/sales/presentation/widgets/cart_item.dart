@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // HID suppression handled by SalesScreen via focus checks; don't directly
 // remove global listeners from widgets.
-import 'package:bayaa_pos/l10n/app_localizations.dart';
+import 'package:barasa_softwares/l10n/app_localizations.dart';
 import '../../../../core/constants/app_colors.dart';
 
 class CartItemRow extends StatefulWidget {

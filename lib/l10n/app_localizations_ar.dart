@@ -2118,7 +2118,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dailySalesReport => 'تقرير المبيعات اليومية';
 
   @override
-  String get advancedPosSystem => 'نظام نقاط البيع المتطور - Bayaa';
+  String get advancedPosSystem => 'نظام نقاط البيع المتطور - barasa_softwares';
 
   @override
   String get reportDateLabel => 'تاريخ التقرير:';

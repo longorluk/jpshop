@@ -32,7 +32,7 @@ class _EditStoreInfoDialogState extends State<EditStoreInfoDialog> {
     super.initState();
     final rawName = widget.storeInfo['name'] ?? '';
     nameCtrl = TextEditingController(
-        text: (rawName == 'Bayaa POS' || rawName.isEmpty) ? '' : rawName);
+        text: (rawName == 'barasa_softwares' || rawName.isEmpty) ? '' : rawName);
     phoneCtrl = TextEditingController(text: widget.storeInfo['phone'] ?? '');
     emailCtrl = TextEditingController(text: widget.storeInfo['email'] ?? '');
     vatCtrl = TextEditingController(text: widget.storeInfo['vat'] ?? '');

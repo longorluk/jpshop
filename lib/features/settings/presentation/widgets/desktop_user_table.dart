@@ -9,7 +9,7 @@ import '../../../auth/data/models/user_model.dart';
 import '../../../auth/presentation/cubit/user_cubit.dart';
 import '../../data/models/user_row.dart';
 import 'add_edit_user_dialog.dart';
-import 'package:bayaa_pos/core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
 import '../../../../core/components/local_image_view.dart';
 
 class DesktopUserTable extends StatelessWidget {

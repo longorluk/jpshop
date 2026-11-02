@@ -7,7 +7,7 @@ import 'package:barcode/barcode.dart';
 import '../../../l10n/app_localizations.dart';
 import '../data/invoice_models.dart';
 import '../../settings/data/models/store_info_model.dart';
-import 'package:bayaa_pos/core/di/dependency_injection.dart';
+import 'package:barasa_softwares/core/di/dependency_injection.dart';
 import '../../settings/data/repository/settings_repository_imp.dart';
 
 class InvoicePdfService {

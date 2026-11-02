@@ -1,4 +1,4 @@
-import 'package:bayaa_pos/core/data/services/persistence_initializer.dart';
+import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
 import '../models/store_info_model.dart';
 
 class StoreInfoDataSource {
@@ -49,7 +49,7 @@ class StoreInfoDataSource {
         final row = results.first;
         final savedName = row['store_name'] as String;
         // Upgrade installations that still use the retired product name.
-        final name = savedName == 'Bayaa Store' ? 'Bayaa POS' : savedName;
+        final name = savedName == 'barasa_softwares' ? 'barasa_softwares' : savedName;
         if (name != savedName) {
           await db.update(
             _table,
@@ -62,7 +62,7 @@ class StoreInfoDataSource {
           name: name,
           address: (row['store_address'] as String?) ?? 'Alkhanka',
           phone: (row['store_phone'] as String?) ?? '01000000000',
-          email: (row['store_email'] as String?) ?? 'bayaa@bayaa',
+          email: (row['store_email'] as String?) ?? 'barasa@barasa',
          
           vat: (row['tax_number'] as String?) ?? '0000000000000',
           logoPath: row['logo_path'] as String?,
@@ -86,7 +86,7 @@ class StoreInfoDataSource {
 
   StoreInfo getDefaultStoreInfo() {
     return StoreInfo(
-      name: 'Bayaa POS',
+      name: 'barasa_softwares',
       phone: '',
       email: '',
       address: "",

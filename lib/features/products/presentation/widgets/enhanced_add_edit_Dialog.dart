@@ -1,6 +1,6 @@
-import 'package:bayaa_pos/features/products/data/models/product_model.dart';
-import 'package:bayaa_pos/core/components/local_image_view.dart';
-import 'package:bayaa_pos/core/data/services/local_image_storage.dart';
+import 'package:barasa_softwares/features/products/data/models/product_model.dart';
+import 'package:barasa_softwares/core/components/local_image_view.dart';
+import 'package:barasa_softwares/core/data/services/local_image_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';

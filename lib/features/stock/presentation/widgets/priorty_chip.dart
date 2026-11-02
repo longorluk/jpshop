@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bayaa_pos/core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/constants/app_colors.dart';
 
 class PriorityChip extends StatelessWidget {
   final String priority;

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../core/constants/app_colors.dart';
 
-import 'package:bayaa_pos/core/localization/translation_helper.dart';
+import 'package:barasa_softwares/core/localization/translation_helper.dart';
 import '../../../../core/data/models/activity_log.dart';
 import '../../../../core/services/activity_logger.dart';
 import 'package:intl/intl.dart';

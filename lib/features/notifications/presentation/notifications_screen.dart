@@ -1,9 +1,9 @@
-import 'package:bayaa_pos/features/notifications/presentation/cubit/notifications_cubit.dart';
-import 'package:bayaa_pos/features/notifications/presentation/cubit/notifications_states.dart';
+import 'package:barasa_softwares/features/notifications/presentation/cubit/notifications_cubit.dart';
+import 'package:barasa_softwares/features/notifications/presentation/cubit/notifications_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:bayaa_pos/core/components/screen_header.dart';
+import 'package:barasa_softwares/core/components/screen_header.dart';
 import '../../../core/components/empty_state.dart';
 
 import '../../../core/constants/app_colors.dart';

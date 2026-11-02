@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/images/iconr.png" alt="Bayaa POS logo" width="120" />
+  <img src="assets/images/iconr.png" alt="barasa_softwares logo" width="120" />
 </p>
 
-<h1 align="center">Bayaa POS</h1>
+<h1 align="center">Barasa Softwares</h1>
 
 <p align="center">
   <strong>An offline-first point-of-sale and retail-management desktop application.</strong>
@@ -17,9 +17,9 @@
 
 ## Overview
 
-Bayaa POS is a Flutter desktop application for retail businesses that need dependable checkout, stock control, invoices, refunds, reporting, and user access management—without relying on an internet connection or external server.
+barasa_softwares is a Flutter desktop application for retail businesses that need dependable checkout, stock control, invoices, refunds, reporting, and user access management—without relying on an internet connection or external server.
 
-The application stores its data locally in SQLite, supports Arabic and English interfaces, and is designed for fast day-to-day work at the counter.
+The application stores its data locally in SQLite, provides an English interface, and is designed for fast day-to-day work at the counter.
 
 ## Contents
 
@@ -37,7 +37,7 @@ The application stores its data locally in SQLite, supports Arabic and English i
 
 - **Offline-first** — sales and inventory data remain on the local machine.
 - **Fast checkout** — barcode scanner support, product search, cart editing, and price validation.
-- **Arabic and English** — localized UI with right-to-left support for Arabic.
+- **English interface** — the application UI currently runs in English.
 - **Role-based access** — separate Manager and Cashier capabilities.
 - **Invoices and refunds** — A4 invoices, 80 mm receipts, partial refunds, and stock restoration.
 - **Operational visibility** — sales, profit, inventory, notifications, sessions, and audit history.
@@ -114,7 +114,7 @@ More application views are available in the [`Screenshots`](Screenshots) directo
 | Documents | `pdf` and `printing` |
 | Analytics visualizations | `fl_chart` |
 | Desktop window controls | `window_manager` |
-| Localization | Flutter localization with Arabic RTL support |
+| Localization | Flutter localization (English UI) |
 
 ## Architecture
 
@@ -180,11 +180,11 @@ lib/
 - **Cubit and BLoC state management** keeps UI state predictable and reactive.
 - **Repository and service layers** isolate persistence, backup, printing, and operational logic.
 - **Local-first persistence** keeps checkout and inventory workflows available without a server.
-- **Localization and RTL** are treated as application-wide behavior, not a screen-specific add-on.
+- **Localization** is handled application-wide; the current release exposes English only.
 
 ## Data and reliability
 
-Bayaa POS creates and maintains its SQLite database locally. It includes backup and restore support, checkpointing, and an activity log for operational events such as sales, refunds, restocks, user activity, and session changes.
+barasa_softwares creates and maintains its SQLite database locally. It includes backup and restore support, checkpointing, and an activity log for operational events such as sales, refunds, restocks, user activity, and session changes.
 
 Main data groups include store settings, users, products, categories, shifts, sales, sale items, and activity logs.
 
@@ -199,13 +199,13 @@ Main data groups include store settings, users, products, categories, shifts, sa
 ### Run locally
 
 ```bash
-git clone https://github.com/Desha29/Bayaa.git
+git clone https://github.com/Geofreybarasa/point-of-sale.git
 cd Bayaa
 flutter pub get
 flutter run -d windows
 ```
 
-On first launch, choose a safe location for the application data. Bayaa POS creates and manages its local data files there.
+On first launch, choose a safe location for the application data. barasa_softwares creates and manages its local data files there.
 
 ### Build a release
 
@@ -226,7 +226,7 @@ flutter analyze
 flutter test
 ```
 
-For UI changes, also run the Windows application and verify both English and Arabic layouts.
+For UI changes, also run the Windows application and verify the English layout.
 
 ## Contributing
 
@@ -240,5 +240,5 @@ For UI changes, also run the Windows application and verify both English and Ara
 This project is proprietary software. All rights reserved.
 
 <p align="center">
-  Built with Flutter by <a href="https://github.com/Geofreybarasa">Barasa Geofrey</a>
+  Built with Flutter by <a href="https://github.com/Geofrey">Barasa Geofrey</a>
 </p>

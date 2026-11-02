@@ -15,10 +15,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get switchToEnglish => 'English';
 
   @override
-  String get loginBrandName => 'Bayaa POS';
+  String get loginBrandName => 'barasa_softwares';
 
   @override
-  String get appName => 'Bayaa POS';
+  String get appName => 'barasa_softwares';
 
   @override
   String get systemSubtitle => 'Retail Point of Sale & Management System';
@@ -2086,7 +2086,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get thankYouShopping => 'Thank you for shopping with us!';
 
   @override
-  String get posSystemName => 'Bayaa POS Sales Management System';
+  String get posSystemName => 'barasa_softwares POS Sales Management System';
 
   @override
   String get enterpriseTaxNumber => 'Enterprise Tax Number:';
@@ -2128,7 +2128,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dailySalesReport => 'Daily Sales Report';
 
   @override
-  String get advancedPosSystem => 'Advanced POS System - Bayaa';
+  String get advancedPosSystem => 'Advanced POS System - barasa_softwares';
 
   @override
   String get reportDateLabel => 'Report Date:';
