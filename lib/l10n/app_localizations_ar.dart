@@ -2413,6 +2413,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get searchInvoiceHint2 => 'امسح الباركود أو اكتب رقم الفاتورة...';
 
   @override
+  String itemsLabel(Object count) {
+    return '$count items';
+  }
+
+  @override
   String get refundBtn => 'استرجاع';
 
   @override

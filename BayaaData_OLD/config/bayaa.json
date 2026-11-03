@@ -8,6 +8,6 @@
   "auto_backup_enabled": true,
   "app_mode": "debug",
   "created_at": "2026-10-30T11:09:42.336463",
-  "lastCheckpoint": "2026-11-02T09:05:26.222162",
-  "lastCheckpointReason": "session_close_admin"
+  "lastCheckpoint": "2026-11-02T09:34:38.666025",
+  "lastCheckpointReason": "login_sales"
 }

@@ -2423,6 +2423,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchInvoiceHint2 => 'Scan barcode or enter invoice number...';
 
   @override
+  String itemsLabel(Object count) {
+    return '$count items';
+  }
+
+  @override
   String get refundBtn => 'Return';
 
   @override
