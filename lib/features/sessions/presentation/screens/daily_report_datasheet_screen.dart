@@ -6,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../data/models/daily_report_model.dart';
 import '../../../sales/data/models/sale_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class DailyReportDatasheetScreen extends StatefulWidget {
   final DailyReport report;
@@ -152,7 +153,7 @@ class _DailyReportDatasheetScreenState extends State<DailyReportDatasheetScreen>
             children: [
               _buildSummaryCard(
                 l10n.netSalesLabel,
-                report.netRevenue.toStringAsFixed(2),
+                CurrencyFormatter.formatAmount(report.netRevenue),
                 l10n.currencyEg,
                 const Color(0xFF059669),
                 Icons.trending_up_rounded,
@@ -170,7 +171,7 @@ class _DailyReportDatasheetScreenState extends State<DailyReportDatasheetScreen>
               const SizedBox(width: 14),
               _buildSummaryCard(
                 l10n.refundsColumn,
-                report.totalRefunds.toStringAsFixed(2),
+                CurrencyFormatter.formatAmount(report.totalRefunds),
                 l10n.currencyEg,
                 AppColors.errorColor,
                 Icons.rotate_left_rounded,
@@ -528,7 +529,7 @@ class _DailyReportDatasheetScreenState extends State<DailyReportDatasheetScreen>
           SizedBox(
             width: 90,
             child: Text(
-              '${isRefund ? '-' : ''}${sale.total.toStringAsFixed(2)} ${l10n.currencyEg}',
+              '${isRefund ? '-' : ''}${CurrencyFormatter.formatKes(sale.total)}',
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontWeight: FontWeight.bold,

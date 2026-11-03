@@ -3,6 +3,7 @@ import 'package:barasa_softwares/l10n/app_localizations.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/components/local_image_view.dart';
 import '../../../products/data/models/product_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class ProductSearchOverlay extends StatelessWidget {
   final List<Product> products;
@@ -103,7 +104,7 @@ class ProductSearchOverlay extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '${product.price.toStringAsFixed(2)} ${AppLocalizations.of(context).currencyEg}',
+                      CurrencyFormatter.formatKes(product.price),
                       style: TextStyle(
                         color: AppColors.kPrimaryBlue,
                         fontWeight: FontWeight.bold,
@@ -136,7 +137,7 @@ class ProductSearchOverlay extends StatelessWidget {
                     children: similar.take(4).map((sp) {
                       return ActionChip(
                         label:
-                            Text('${sp.name} | ${sp.price.toStringAsFixed(2)}'),
+                            Text('${sp.name} | ${CurrencyFormatter.formatKes(sp.price)}'),
                         onPressed: () => onProductSelected(sp),
                       );
                     }).toList(),

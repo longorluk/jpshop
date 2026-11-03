@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'dart:async';
 
 import '../../features/sessions/data/models/session_model.dart';
@@ -45,7 +46,7 @@ class SessionManager {
   /// - If no open session exists → creates one automatically.
   /// - Thread-safe: concurrent calls will wait for the same session creation.
   Future<Session> getOrCreateSession({String? userName}) async {
-    print('DEBUG_SESSION: SessionManager.getOrCreateSession called');
+    debugPrint('DEBUG_SESSION: SessionManager.getOrCreateSession called');
     // Fast path: session already open in cache
     final existing = _repo.getCurrentSession();
     if (existing != null && existing.isOpen) {
@@ -91,7 +92,7 @@ class SessionManager {
           parameters: {'user': autoUser.name},
         );
       } catch (e) {
-        print('Warning: Failed to log auto-session creation: $e');
+        debugPrint('Warning: Failed to log auto-session creation: $e');
       }
 
       _pendingCreate!.complete(newSession);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 
 
@@ -96,7 +97,7 @@ class AnalyticsChartSection extends StatelessWidget {
                               getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
                                 return touchedBarSpots.map((barSpot) {
                                   return LineTooltipItem(
-                                    '${barSpot.y.toInt()} ${l10n.currencyEg}',
+                                    CurrencyFormatter.formatKes(barSpot.y),
                                     const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,

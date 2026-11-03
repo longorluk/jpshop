@@ -4,8 +4,7 @@
 /// 
 /// This class provides backward compatibility - your existing Hive-based code continues to work,
 /// and the new persistence system runs alongside it.
-library;
-
+import 'package:flutter/foundation.dart' show debugPrint;
 
 import 'persistence_initializer.dart';
 
@@ -18,7 +17,7 @@ class DataPersistenceIntegration {
     try {
       await PersistenceInitializer.initialize();
     } catch (e) {
-      print('Persistence system not available: $e');
+      debugPrint('Persistence system not available: $e');
       // System continues with Hive only
     }
   }
@@ -73,7 +72,7 @@ class DataPersistenceIntegration {
       try {
         return await sqliteQuery();
       } catch (e) {
-        print('SQLite query failed, falling back to Hive: $e');
+        debugPrint('SQLite query failed, falling back to Hive: $e');
       }
     }
     

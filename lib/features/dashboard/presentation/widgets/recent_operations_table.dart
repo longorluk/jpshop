@@ -6,6 +6,7 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../invoice/presentation/cubit/invoice_cubit.dart';
 import '../../../invoice/presentation/cubit/invoice_state.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class RecentOperationsTable extends StatefulWidget {
   final VoidCallback onShowAll;
@@ -250,7 +251,7 @@ class _RecentOperationsTableState extends State<RecentOperationsTable> {
                           Expanded(
                             flex: 3,
                             child: Text(
-                              '${sale.total.toStringAsFixed(2)} ${l10n.currencyEg}',
+                              '${CurrencyFormatter.formatKes(sale.total)}',
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,

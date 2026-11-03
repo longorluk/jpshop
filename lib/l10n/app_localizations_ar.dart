@@ -245,7 +245,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get currencyEg => 'ج.م';
+  String get currencyEg => 'KES';
 
   @override
   String get salesTrendTitle => 'مؤشر المبيعات (آخر 7 أيام)';
@@ -417,7 +417,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String detailsAmount(Object amount, Object currency) {
-    return 'المبلغ: $amount $currency';
+    return 'المبلغ: $currency $amount';
   }
 
   @override
@@ -1392,7 +1392,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String totalValueAmount(Object amount) {
-    return 'إجمالي القيمة: $amount ج.م';
+    return 'إجمالي القيمة: KES $amount';
   }
 
   @override
@@ -1491,10 +1491,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pdfQtyHeader => 'ق';
 
   @override
-  String get pdfPriceHeader => 'س';
+  String get pdfPriceHeader => 'السعر (KES)';
 
   @override
-  String get pdfTotalHeader => 'ج';
+  String get pdfTotalHeader => 'الإجمالي (KES)';
 
   @override
   String get productNotFoundCubit => 'المنتج غير موجود';
@@ -1504,7 +1504,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String priceBelowMin(Object price) {
-    return 'السعر أقل من الحد الأدنى ($price ج.م)';
+    return 'السعر أقل من الحد الأدنى (KES $price)';
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:bloc/bloc.dart';
 import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
 import '../../data/models/stock_summary_category_model.dart';
@@ -17,7 +18,7 @@ class StockSummaryCubit extends Cubit<StockSummaryState> {
     if (isClosed) return;
     emit(StockSummaryLoading());
     try {
-      print('📊 === STOCK SUMMARY: Loading Data (SQLite) ===');
+      debugPrint('📊 === STOCK SUMMARY: Loading Data (SQLite) ===');
       
       final db = PersistenceInitializer.persistenceManager!.sqliteManager;
       
@@ -180,9 +181,9 @@ class StockSummaryCubit extends Cubit<StockSummaryState> {
         grandExpectedProfit += s.expectedProfit;
       }
 
-      print('  💰 Grand Total Historic Value: ${grandHistoric.toStringAsFixed(2)}');
-      print('  💵 Grand Total Current Value: ${grandCurrent.toStringAsFixed(2)}');
-      print('  ✅ Stock summary loaded successfully');
+      debugPrint('  💰 Grand Total Historic Value: ${grandHistoric.toStringAsFixed(2)}');
+      debugPrint('  💵 Grand Total Current Value: ${grandCurrent.toStringAsFixed(2)}');
+      debugPrint('  ✅ Stock summary loaded successfully');
 
       if (!isClosed) {
         emit(StockSummaryLoaded(
@@ -194,7 +195,7 @@ class StockSummaryCubit extends Cubit<StockSummaryState> {
       }
 
     } catch (e) {
-      print('  ❌ Stock summary failed: $e');
+      debugPrint('  ❌ Stock summary failed: $e');
       if (!isClosed) emit(StockSummaryError("Failed to calculate summary: $e"));
     }
   }

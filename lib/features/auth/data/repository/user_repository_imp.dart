@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
 import 'package:barasa_softwares/core/data/services/repository_persistence_mixin.dart';
 import 'package:barasa_softwares/core/error/failure.dart';
@@ -31,11 +32,11 @@ class UserRepositoryImp extends UserRepositoryInt with RepositoryPersistenceMixi
   @override
   Future<Either<Failure, List<User>>> getAllUsers() async {
     try {
-      print('👥 === LOADING USERS (SQLite) ===');
+      debugPrint('👥 === LOADING USERS (SQLite) ===');
       
       final db = PersistenceInitializer.persistenceManager!.sqliteManager;
       final results = await db.query('users', where: 'is_active = 1');
-      print('  👤 Users found in SQL: ${results.length}');
+      debugPrint('  👤 Users found in SQL: ${results.length}');
       
       final users = results.map((m) => User(
         name: m['display_name'] as String,
@@ -47,12 +48,12 @@ class UserRepositoryImp extends UserRepositoryInt with RepositoryPersistenceMixi
       )).toList();
       
       for (var user in users) {
-        print('     - ${user.name} (@${user.username}) - ${user.userType == UserType.manager ? "Manager" : "Cashier"}');
+        debugPrint('     - ${user.name} (@${user.username}) - ${user.userType == UserType.manager ? "Manager" : "Cashier"}');
       }
       
       return Right(users);
     } on Exception catch (e) {
-      print('  ❌ Failed to load users: $e');
+      debugPrint('  ❌ Failed to load users: $e');
       return Left(CacheFailure("Failed to fetch users: ${e.toString()}"));
     }
   }
@@ -70,7 +71,7 @@ class UserRepositoryImp extends UserRepositoryInt with RepositoryPersistenceMixi
   @override
   Future<Either<Failure, User>> getUser(String username) async {
     try {
-      print('👤 === GETTING USER: $username (SQLite) ===');
+      debugPrint('👤 === GETTING USER: $username (SQLite) ===');
       
       final db = PersistenceInitializer.persistenceManager!.sqliteManager;
       final results = await db.query('users', 
@@ -89,14 +90,14 @@ class UserRepositoryImp extends UserRepositoryInt with RepositoryPersistenceMixi
           imagePath: userMap['image_path'] as String?,
         );
         
-        print('  ✅ User found: ${user.name}');
+        debugPrint('  ✅ User found: ${user.name}');
         return Right(user);
       } else {
-        print('  ❌ User not found');
+        debugPrint('  ❌ User not found');
         return Left(CacheFailure("User not found"));
       }
     } on Exception catch (e) {
-      print('  ❌ Failed to get user: $e');
+      debugPrint('  ❌ Failed to get user: $e');
       return Left(CacheFailure("Failed to fetch user: ${e.toString()}"));
     }
   }
@@ -105,9 +106,9 @@ class UserRepositoryImp extends UserRepositoryInt with RepositoryPersistenceMixi
   Future<Either<Failure, void>> saveUser(User user) async {
     return ErrorHandler.executeWithErrorHandlingEitherDart(
       operation: () async {
-        print('👤 === SAVING USER (SQLite) ===');
-        print('  📝 Name: ${user.name}');
-        print('  👤 Username: ${user.username}');
+        debugPrint('👤 === SAVING USER (SQLite) ===');
+        debugPrint('  📝 Name: ${user.name}');
+        debugPrint('  👤 Username: ${user.username}');
         
         final isUpdate = await _userExists(user.username);
         
@@ -119,7 +120,7 @@ class UserRepositoryImp extends UserRepositoryInt with RepositoryPersistenceMixi
             final db = PersistenceInitializer.persistenceManager!.sqliteManager;
             
             final existing = await db.query('users', where: 'username = ?', whereArgs: [user.username]);
-            print('  🗄️ Database Action: ${existing.isNotEmpty ? "UPDATE" : "INSERT"}');
+            debugPrint('  🗄️ Database Action: ${existing.isNotEmpty ? "UPDATE" : "INSERT"}');
 
             final values = <String, Object?>{
               'username': user.username,
@@ -154,7 +155,7 @@ class UserRepositoryImp extends UserRepositoryInt with RepositoryPersistenceMixi
           id: user.username,
         ));
         
-        print('  ✅ User saved successfully\n');
+        debugPrint('  ✅ User saved successfully\n');
         return const Right(null);
       },
       operationName: 'saveUser',

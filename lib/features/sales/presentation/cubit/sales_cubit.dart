@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'dart:async';
 import 'package:barasa_softwares/core/di/dependency_injection.dart';
 import 'package:barasa_softwares/features/auth/presentation/cubit/user_cubit.dart';
@@ -17,6 +18,7 @@ import '../../data/models/sale_model.dart';
 import '../../domain/sales_repository.dart';
 
 import 'sales_state.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class SalesCubit extends Cubit<SalesState> {
   final SalesRepository repository;
@@ -184,7 +186,7 @@ class SalesCubit extends Cubit<SalesState> {
     if (newPrice < item.minPrice) {
       emit(PriceValidationError(
         message:
-            'priceBelowMin:${item.minPrice.toStringAsFixed(2)}',
+            'priceBelowMin:${CurrencyFormatter.formatAmount(item.minPrice)}',
         minPrice: item.minPrice,
         attemptedPrice: newPrice,
       ));
@@ -209,7 +211,7 @@ class SalesCubit extends Cubit<SalesState> {
     final itemCount = _cartItems.length;
     final userName = getIt<UserCubit>().currentUser.name;
     
-    print('DEBUG_CHECKOUT: Starting checkout total=$total items=$itemCount user=$userName');
+    debugPrint('DEBUG_CHECKOUT: Starting checkout total=$total items=$itemCount user=$userName');
 
     // Get or auto-create session via SessionManager
     String sessionId;
@@ -218,12 +220,12 @@ class SalesCubit extends Cubit<SalesState> {
         userName: userName,
       );
     } catch (e) {
-      print('DEBUG_CHECKOUT: Failed to get session: $e');
+      debugPrint('DEBUG_CHECKOUT: Failed to get session: $e');
       emit(SalesError(message: 'failedOpenSession'));
       _emitLoaded();
       return;
     }
-    print('DEBUG_CHECKOUT: Using session $sessionId');
+    debugPrint('DEBUG_CHECKOUT: Using session $sessionId');
 
     // Update stock — fixed: no unawaited fold
     for (final it in _cartItems) {
@@ -258,12 +260,12 @@ class SalesCubit extends Cubit<SalesState> {
           .toList(),
     );
 
-    print('DEBUG_CHECKOUT: Saving sale id=${sale.id} isRefund=${sale.isRefund}');
+    debugPrint('DEBUG_CHECKOUT: Saving sale id=${sale.id} isRefund=${sale.isRefund}');
     final saved = await repository.saveSale(sale);
     if (saved.isLeft()) {
       saved.fold(
         (f) {
-          print('DEBUG_CHECKOUT: Save FAILED: ${f.message}');
+          debugPrint('DEBUG_CHECKOUT: Save FAILED: ${f.message}');
           emit(SalesError(message: f.message));
           _emitLoaded();
         },
@@ -271,16 +273,16 @@ class SalesCubit extends Cubit<SalesState> {
       );
       return;
     }
-    print('DEBUG_CHECKOUT: Sale saved successfully');
+    debugPrint('DEBUG_CHECKOUT: Sale saved successfully');
 
     // Sale saved — log activity immediately
     _lastCompletedSale = sale;
     
     try {
-      print('DEBUG_CHECKOUT: Logging activity type=sale total=$total');
+      debugPrint('DEBUG_CHECKOUT: Logging activity type=sale total=$total');
       await getIt<ActivityLogger>().logActivity(
         type: ActivityType.sale,
-        description: 'Sale: ${total.toStringAsFixed(2)} KES',
+        description: 'Sale: ${CurrencyFormatter.formatKes(total)}',
         userName: userName,
         sessionId: sessionId,
         details: {
@@ -291,9 +293,9 @@ class SalesCubit extends Cubit<SalesState> {
         eventKey: 'saleCompleted',
         parameters: {'user': userName, 'total': total.toStringAsFixed(2)},
       );
-      print('DEBUG_CHECKOUT: Activity logged successfully ✓');
+      debugPrint('DEBUG_CHECKOUT: Activity logged successfully ✓');
     } catch (e) {
-      print('DEBUG_CHECKOUT: FAILED to log activity: $e');
+      debugPrint('DEBUG_CHECKOUT: FAILED to log activity: $e');
     }
 
     _cartItems.clear();

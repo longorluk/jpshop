@@ -35,31 +35,31 @@ class GlobalMessage {
 
   static void showSuccess(String message) {
     if (_context != null) {
-      MotionSnackBarSuccess(_context!, message);
+      motionSnackBarSuccess(_context!, message);
     }
   }
 
   static void showError(String message) {
     if (_context != null) {
-      MotionSnackBarError(_context!, message);
+      motionSnackBarError(_context!, message);
     }
   }
 
   static void showWarning(String message) {
     if (_context != null) {
-      MotionSnackBarWarning(_context!, message);
+      motionSnackBarWarning(_context!, message);
     }
   }
 
   static void showInfo(String message) {
     if (_context != null) {
-      MotionSnackBarInfo(_context!, message);
+      motionSnackBarInfo(_context!, message);
     }
   }
 
   static void showLoading(String message) {
     if (_context != null) {
-      MotionSnackBarInfo(_context!, message);
+      motionSnackBarInfo(_context!, message);
     }
   }
 

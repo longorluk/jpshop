@@ -53,6 +53,8 @@ class PersistenceInitializer {
       await _persistenceManager!.pathResolver.initialize();
     }
 
+    if (!context.mounted) return false;
+
     final String message = allowCancel 
         ? 'Choose a safe folder to store system data.\nA "BayaaData" folder will be created in your chosen location.\n\nNote: Your data is protected and will not be deleted when the app is uninstalled.'
         : 'Initial setup: Choose a location to store system data.\n\nA "BayaaData" folder will be created.\nIf you have previous data, select the folder that contains it.\n\nDefault location: Next to the app file.';

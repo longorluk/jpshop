@@ -5,6 +5,7 @@ import 'package:barasa_softwares/l10n/app_localizations.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../sales/data/models/sale_model.dart';
 import '../../domain/refund_calculation_service.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 /// An item selected for refund.
 class RefundItem {
@@ -270,7 +271,7 @@ class _PartialRefundDialogState extends State<PartialRefundDialog> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    '${totalRefundAmount.toStringAsFixed(2)} ${l10n.currencyEg}',
+                    '${CurrencyFormatter.formatKes(totalRefundAmount)}',
                     style: const TextStyle(
                       color: AppColors.errorColor,
                       fontSize: 20,
@@ -438,7 +439,7 @@ class _PartialRefundDialogState extends State<PartialRefundDialog> {
             bold: true,
           ),
         ),
-        DataCell(Text(item.unitPrice.toStringAsFixed(2))),
+        DataCell(Text(CurrencyFormatter.formatKes(item.unitPrice))),
         DataCell(
           SizedBox(
             width: 86,
@@ -485,7 +486,7 @@ class _PartialRefundDialogState extends State<PartialRefundDialog> {
         ),
         DataCell(
           Text(
-            '${subtotal.toStringAsFixed(2)} ${l10n.currencyEg}',
+            '${CurrencyFormatter.formatKes(subtotal)}',
             style: TextStyle(
               color: hasSelection ? AppColors.errorColor : AppColors.mutedColor,
               fontWeight: FontWeight.w700,

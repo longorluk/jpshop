@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class DailyPlanGauge extends StatelessWidget {
   final double percentage; // 0.0 to 1.0
@@ -48,8 +49,8 @@ class DailyPlanGauge extends StatelessWidget {
                 label: Localizations.localeOf(context).languageCode == 'ar'
                     ? 'المبيعات المستهدفة'
                     : 'Sales target',
-                current: currentSales.toStringAsFixed(0),
-                target: '${salesTarget.toStringAsFixed(0)} $currency',
+                current: CurrencyFormatter.formatKes(currentSales),
+                target: '$currency ${CurrencyFormatter.formatAmount(salesTarget)}',
                 progress: salesTarget > 0 ? (currentSales / salesTarget).clamp(0.0, 1.0) : 0.0,
                 color: AppColors.successColor,
               ),

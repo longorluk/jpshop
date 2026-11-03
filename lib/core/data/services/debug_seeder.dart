@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 // lib/core/data/services/debug_seeder.dart
 
 import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
@@ -14,14 +15,14 @@ class DebugSeeder {
       final count = productsCount.isNotEmpty ? (productsCount.first['count'] as int? ?? 0) : 0;
       if (count > 0) {
         await _seedExpensesIfNeeded();
-        print('ℹ️ Products already seeded. Skipping auto-seeding.');
+        debugPrint('ℹ️ Products already seeded. Skipping auto-seeding.');
         return;
       }
 
-      print('🌱 Empty database in debug mode. Seeding mock data...');
+      debugPrint('🌱 Empty database in debug mode. Seeding mock data...');
       await seedAll();
     } catch (e) {
-      print('❌ Error checking / seeding database: $e');
+      debugPrint('❌ Error checking / seeding database: $e');
     }
   }
 
@@ -331,14 +332,14 @@ class DebugSeeder {
       }
     });
 
-    print('🌱 Seeding complete successfully!');
+    debugPrint('🌱 Seeding complete successfully!');
   }
 
   static Future<void> clearAndReSeed() async {
     final db = PersistenceInitializer.persistenceManager?.sqliteManager;
     if (db == null) return;
 
-    print('🗑️ Clearing database tables...');
+    debugPrint('🗑️ Clearing database tables...');
     await db.transaction((txn) async {
       await txn.delete('sale_items');
       await txn.delete('sales');
@@ -350,7 +351,7 @@ class DebugSeeder {
       await txn.delete('expenses');
     });
 
-    print('🌱 Re-seeding database...');
+    debugPrint('🌱 Re-seeding database...');
     await seedAll();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:barasa_softwares/l10n/app_localizations.dart';
 import '../../../../core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class TotalSectionCard extends StatelessWidget {
   final double totalAmount;
@@ -90,7 +91,7 @@ class TotalSectionCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  l10n.priceWithCurrency(totalAmount.toStringAsFixed(2), l10n.currencyEg),
+                  l10n.priceWithCurrency(CurrencyFormatter.formatAmount(totalAmount), l10n.currencyEg),
                   style: const TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 13,
@@ -115,7 +116,7 @@ class TotalSectionCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  l10n.priceWithCurrency(totalAmount.toStringAsFixed(2), l10n.currencyEg),
+                  l10n.priceWithCurrency(CurrencyFormatter.formatAmount(totalAmount), l10n.currencyEg),
                   style: const TextStyle(
                     color: AppColors.primaryColor,
                     fontSize: 22,

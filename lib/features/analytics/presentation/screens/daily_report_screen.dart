@@ -13,6 +13,7 @@ import '../../../sessions/presentation/screens/daily_report_datasheet_screen.dar
 import '../../../sessions/presentation/screens/daily_report_preview_screen.dart';
 import '../../../../core/components/message_overlay.dart';
 import '../../../../core/di/dependency_injection.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class DailyReportScreen extends StatefulWidget {
   final DailyReport? initialReport;
@@ -494,13 +495,13 @@ class _DailyReportScreenState extends State<DailyReportScreen>
             children: [
               _buildSummaryCard(
                   l10n.totalSales,
-                  '${report!.totalSales.toStringAsFixed(2)} ${l10n.currencyEg}',
+                  '${CurrencyFormatter.formatKes(report!.totalSales)}',
                   Icons.attach_money,
                   AppColors.successColor),
               const SizedBox(height: 12),
               _buildSummaryCard(
                   l10n.netRevenueLabel,
-                  '${report!.netRevenue.toStringAsFixed(2)} ${l10n.currencyEg}',
+                  '${CurrencyFormatter.formatKes(report!.netRevenue)}',
                   Icons.trending_up,
                   Color(0xFF2E7D32)),
             ],
@@ -511,7 +512,7 @@ class _DailyReportScreenState extends State<DailyReportScreen>
             Expanded(
               child: _buildSummaryCard(
                   l10n.totalSales,
-                  '${report!.totalSales.toStringAsFixed(2)} ${l10n.currencyEg}',
+                  '${CurrencyFormatter.formatKes(report!.totalSales)}',
                   Icons.attach_money,
                   AppColors.successColor),
             ),
@@ -519,7 +520,7 @@ class _DailyReportScreenState extends State<DailyReportScreen>
             Expanded(
               child: _buildSummaryCard(
                   l10n.netRevenueLabel,
-                  '${report!.netRevenue.toStringAsFixed(2)} ${l10n.currencyEg}',
+                  '${CurrencyFormatter.formatKes(report!.netRevenue)}',
                   Icons.trending_up,
                   Color(0xFF2E7D32)),
             ),
@@ -827,13 +828,13 @@ class _DailyReportScreenState extends State<DailyReportScreen>
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                      '${product.revenue.toStringAsFixed(2)} ${l10n.currencyEg}',
+                      '${CurrencyFormatter.formatKes(product.revenue)}',
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: AppColors.primaryColor)),
                   const SizedBox(height: 2),
-                  Text(l10n.profitAmount(product.profit.toStringAsFixed(2)),
+                  Text(l10n.profitAmount(CurrencyFormatter.formatKes(product.profit)),
                       style:
                           TextStyle(fontSize: 12, color: AppColors.mutedColor)),
                   Text(
@@ -928,7 +929,7 @@ class _DailyReportScreenState extends State<DailyReportScreen>
                         ),
                         DataCell(Text('${product.quantitySold}')),
                         DataCell(Text(
-                            '${product.revenue.toStringAsFixed(2)} ${l10n.currencyEg}',
+                            '${CurrencyFormatter.formatKes(product.revenue)}',
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.errorColor))),
@@ -1033,7 +1034,7 @@ class _DailyReportScreenState extends State<DailyReportScreen>
                           ),
                         )),
                         DataCell(Text(
-                            '${sale.total.toStringAsFixed(2)} ${l10n.currencyEg}',
+                            '${CurrencyFormatter.formatKes(sale.total)}',
                             style:
                                 const TextStyle(fontWeight: FontWeight.bold))),
                       ],

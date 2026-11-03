@@ -155,6 +155,7 @@ class _InvoiceScreenState extends State<InvoiceScreen>
         );
       },
     );
+    if (!mounted) return;
     if (picked != null) {
       final cubit = context.read<InvoiceCubit>();
       cubit.setDate(isStart ? picked : cubit.state.startDate,
@@ -185,7 +186,7 @@ class _InvoiceScreenState extends State<InvoiceScreen>
       ),
     );
 
-    if (confirmed != true) return;
+    if (confirmed != true || !mounted) return;
 
     try {
       await context.read<InvoiceCubit>().deleteSale(sale.id);
@@ -216,7 +217,7 @@ class _InvoiceScreenState extends State<InvoiceScreen>
       ),
     );
 
-    if (selectedItems == null || selectedItems.isEmpty) return;
+    if (!mounted || selectedItems == null || selectedItems.isEmpty) return;
 
     await context.read<InvoiceCubit>().createPartialRefund(
           originalSale: sale,
@@ -266,7 +267,7 @@ class _InvoiceScreenState extends State<InvoiceScreen>
       ),
     );
 
-    if (confirmed != true) return;
+    if (confirmed != true || !mounted) return;
 
     try {
       await context

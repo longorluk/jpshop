@@ -833,7 +833,7 @@ abstract class AppLocalizations {
   /// No description provided for @detailsAmount.
   ///
   /// In en, this message translates to:
-  /// **'Amount: {amount} {currency}'**
+  /// **'Amount: {currency} {amount}'**
   String detailsAmount(Object amount, Object currency);
 
   /// No description provided for @detailsUser.
@@ -2603,7 +2603,7 @@ abstract class AppLocalizations {
   /// No description provided for @totalValueAmount.
   ///
   /// In en, this message translates to:
-  /// **'Total Value: {amount} KES'**
+  /// **'Total Value: KES {amount}'**
   String totalValueAmount(Object amount);
 
   /// No description provided for @stockQtyDistribution.
@@ -2783,13 +2783,13 @@ abstract class AppLocalizations {
   /// No description provided for @pdfPriceHeader.
   ///
   /// In en, this message translates to:
-  /// **'Price'**
+  /// **'Price (KES)'**
   String get pdfPriceHeader;
 
   /// No description provided for @pdfTotalHeader.
   ///
   /// In en, this message translates to:
-  /// **'Total'**
+  /// **'Total (KES)'**
   String get pdfTotalHeader;
 
   /// No description provided for @productNotFoundCubit.
@@ -2807,7 +2807,7 @@ abstract class AppLocalizations {
   /// No description provided for @priceBelowMin.
   ///
   /// In en, this message translates to:
-  /// **'Price is below minimum ({price} KES)'**
+  /// **'Price is below minimum (KES {price})'**
   String priceBelowMin(Object price);
 
   /// No description provided for @cartIsEmpty.

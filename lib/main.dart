@@ -30,7 +30,7 @@ Future<void> _initializePersistenceSystem() async {
     final initialized = await PersistenceInitializer.initialize();
 
     if (initialized) {
-      print(
+      debugPrint(
           '📁 Data root: ${PersistenceInitializer.persistenceManager!.pathResolver.dataRootPath}');
 
       FileLogger.info('Persistence system initialized successfully',

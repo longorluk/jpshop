@@ -79,22 +79,22 @@ void _showCustomSnackBar(
   );
 }
 
-void MotionSnackBarSuccess(BuildContext context, String message) {
+void motionSnackBarSuccess(BuildContext context, String message) {
   _showCustomSnackBar(
       context, message, LucideIcons.checkCircle2, AppColors.successColor);
 }
 
-void MotionSnackBarError(BuildContext context, String message) {
+void motionSnackBarError(BuildContext context, String message) {
   _showCustomSnackBar(
       context, message, LucideIcons.xCircle, AppColors.errorColor);
 }
 
-void MotionSnackBarInfo(BuildContext context, String message) {
+void motionSnackBarInfo(BuildContext context, String message) {
   _showCustomSnackBar(
       context, message, LucideIcons.info, AppColors.secondaryColor);
 }
 
-void MotionSnackBarWarning(BuildContext context, String message) {
+void motionSnackBarWarning(BuildContext context, String message) {
   _showCustomSnackBar(
       context, message, LucideIcons.alertTriangle, AppColors.warningColor);
 }
@@ -118,14 +118,14 @@ Future<void> handleLogout(BuildContext context) async {
 
         Future.delayed(const Duration(milliseconds: 300), () {
           if (context.mounted) {
-            MotionSnackBarSuccess(context, l10n.logoutSuccess);
+            motionSnackBarSuccess(context, l10n.logoutSuccess);
           }
         });
       }
     } catch (e) {
       if (context.mounted) {
         Navigator.pop(context); // Close loading dialog
-        MotionSnackBarError(context, "${l10n.logoutFailed}: $e");
+        motionSnackBarError(context, "${l10n.logoutFailed}: $e");
       }
     }
   }

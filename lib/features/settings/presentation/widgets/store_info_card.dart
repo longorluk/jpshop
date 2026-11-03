@@ -31,10 +31,10 @@ class StoreInfoCard extends StatelessWidget {
     return BlocConsumer<SettingsCubit, SettingsStates>(
       listener: (context, state) {
         if (state is StoreInfoUpdateSuccess) {
-          MotionSnackBarSuccess(
+          motionSnackBarSuccess(
               context, TranslationHelper.translate(context, state.message));
         } else if (state is StoreInfoUpdateFailure) {
-          MotionSnackBarError(
+          motionSnackBarError(
               context, TranslationHelper.translate(context, state.message));
         }
       },
@@ -343,7 +343,7 @@ class StoreInfoCard extends StatelessWidget {
       }
     } catch (e) {
       if (context.mounted) {
-        MotionSnackBarError(context, AppLocalizations.of(context).error);
+        motionSnackBarError(context, AppLocalizations.of(context).error);
       }
     }
   }

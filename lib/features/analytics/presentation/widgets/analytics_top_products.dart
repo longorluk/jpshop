@@ -5,6 +5,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 
 import '../../../sessions/data/models/product_performance_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 
 
@@ -151,7 +152,7 @@ class AnalyticsTopProducts extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        '${product.revenue.toStringAsFixed(0)} ${l10n.currencyEg}',
+                        '${CurrencyFormatter.formatKes(product.revenue)}',
                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppColors.primaryColor),
                       ),
                     ],

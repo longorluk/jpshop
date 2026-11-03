@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 // remove global listeners from widgets.
 import 'package:barasa_softwares/l10n/app_localizations.dart';
 import '../../../../core/constants/app_colors.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class CartItemRow extends StatefulWidget {
   final String name;
@@ -68,7 +69,7 @@ class _CartItemRowState extends State<CartItemRow> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                AppLocalizations.of(context).minPriceLabel(widget.minPrice.toStringAsFixed(2), AppLocalizations.of(context).currencyEg),
+                AppLocalizations.of(context).minPriceLabel(CurrencyFormatter.formatAmount(widget.minPrice), AppLocalizations.of(context).currencyEg),
                 style: TextStyle(
                   color: AppColors.warningColor,
                   fontSize: 12,
@@ -110,7 +111,7 @@ class _CartItemRowState extends State<CartItemRow> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        AppLocalizations.of(context).priceValidationError(widget.minPrice.toStringAsFixed(2), AppLocalizations.of(context).currencyEg),
+                        AppLocalizations.of(context).priceValidationError(CurrencyFormatter.formatAmount(widget.minPrice), AppLocalizations.of(context).currencyEg),
                       ),
                       backgroundColor: AppColors.kDangerRed,
                     ),
@@ -233,7 +234,7 @@ class _CartItemRowState extends State<CartItemRow> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              AppLocalizations.of(context).priceWithCurrency(widget.price.toStringAsFixed(0), AppLocalizations.of(context).currencyEg),
+                              AppLocalizations.of(context).priceWithCurrency(CurrencyFormatter.formatAmount(widget.price), AppLocalizations.of(context).currencyEg),
                               textAlign: TextAlign.center,
                               style: const TextStyle(fontSize: 14),
                             ),
@@ -275,7 +276,7 @@ class _CartItemRowState extends State<CartItemRow> {
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
-                    AppLocalizations.of(context).priceWithCurrency(total.toStringAsFixed(0), AppLocalizations.of(context).currencyEg),
+                    AppLocalizations.of(context).priceWithCurrency(CurrencyFormatter.formatAmount(total), AppLocalizations.of(context).currencyEg),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,

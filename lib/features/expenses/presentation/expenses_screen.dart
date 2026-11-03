@@ -7,6 +7,7 @@ import 'package:barasa_softwares/l10n/app_localizations.dart';
 import '../../../core/constants/app_colors.dart';
 import '../data/expense_model.dart';
 import '../data/expense_repository.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen({super.key});
@@ -317,7 +318,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                 const SizedBox(height: 4),
                 Text(
                     money
-                        ? '${value.toStringAsFixed(2)} ${_l10n.currencyEg}'
+                        ? '${CurrencyFormatter.formatKes(value)}'
                         : value.toInt().toString(),
                     style: const TextStyle(
                         fontSize: 19, fontWeight: FontWeight.w800))
@@ -400,7 +401,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                   subtitle: Text(
                       '${_categoryLabel(item.category)}  •  ${DateFormat('dd/MM/yyyy').format(item.date)}'),
                   trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Text('${item.amount.toStringAsFixed(2)} ${_l10n.currencyEg}',
+                    Text('${CurrencyFormatter.formatKes(item.amount)}',
                         style: const TextStyle(
                             fontWeight: FontWeight.w800,
                             color: AppColors.errorColor)),

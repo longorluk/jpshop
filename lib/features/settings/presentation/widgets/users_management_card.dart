@@ -31,10 +31,10 @@ class UsersManagementCard extends StatelessWidget {
     return BlocConsumer<UserCubit, UserStates>(
       listener: (context, state) {
         if (state is UserSuccess) {
-          MotionSnackBarSuccess(
+          motionSnackBarSuccess(
               context, TranslationHelper.translate(context, state.message));
         } else if (state is UserFailure) {
-          MotionSnackBarError(
+          motionSnackBarError(
               context, TranslationHelper.translate(context, state.error));
         }
       },

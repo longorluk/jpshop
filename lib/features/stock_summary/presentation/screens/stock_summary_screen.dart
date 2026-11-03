@@ -13,6 +13,7 @@ import 'package:barasa_softwares/features/stock_summary/data/models/stock_summar
 import 'package:barasa_softwares/features/stock_summary/presentation/cubit/stock_summary_cubit.dart';
 import 'package:barasa_softwares/features/stock_summary/presentation/cubit/stock_summary_state.dart';
 import 'package:barasa_softwares/features/stock_summary/presentation/widgets/product_details_dialog.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class StockSummaryScreen extends StatefulWidget {
   const StockSummaryScreen({super.key});
@@ -163,7 +164,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               Expanded(
                 child: _SummaryCard(
                   title: l10n.totalHistoricValue,
-                  value: "${state.totalStoreHistoricValue.toStringAsFixed(0)} ${l10n.currencyEg}",
+                  value: "${CurrencyFormatter.formatKes(state.totalStoreHistoricValue)}",
                   icon: LucideIcons.history,
                   color: AppColors.secondaryColor,
                   tooltip: l10n.historicValueTooltip,
@@ -173,7 +174,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               Expanded(
                 child: _SummaryCard(
                   title: l10n.currentWholesaleValue,
-                  value: "${state.totalStoreCurrentValue.toStringAsFixed(0)} ${l10n.currencyEg}",
+                  value: "${CurrencyFormatter.formatKes(state.totalStoreCurrentValue)}",
                   icon: LucideIcons.package,
                   color: AppColors.primaryColor,
                   tooltip: l10n.currentWholesaleTooltip,
@@ -183,7 +184,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               Expanded(
                 child: _SummaryCard(
                   title: l10n.expectedProfit,
-                  value: "${state.totalExpectedProfit.toStringAsFixed(0)} ${l10n.currencyEg}",
+                  value: "${CurrencyFormatter.formatKes(state.totalExpectedProfit)}",
                   icon: LucideIcons.trendingUp,
                   color: AppColors.successColor,
                   tooltip: l10n.expectedProfitTooltip,
@@ -196,7 +197,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
             children: [
               _SummaryCard(
                 title: l10n.totalHistoricValue,
-                value: "${state.totalStoreHistoricValue.toStringAsFixed(0)} ${l10n.currencyEg}",
+                value: "${CurrencyFormatter.formatKes(state.totalStoreHistoricValue)}",
                 icon: LucideIcons.history,
                 color: AppColors.secondaryColor,
                 tooltip: l10n.historicValueTooltip,
@@ -204,7 +205,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               const SizedBox(height: 12),
               _SummaryCard(
                 title: l10n.currentWholesaleValue,
-                value: "${state.totalStoreCurrentValue.toStringAsFixed(0)} ${l10n.currencyEg}",
+                value: "${CurrencyFormatter.formatKes(state.totalStoreCurrentValue)}",
                 icon: LucideIcons.package,
                 color: AppColors.primaryColor,
                 tooltip: l10n.currentWholesaleTooltip,
@@ -212,7 +213,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               const SizedBox(height: 12),
               _SummaryCard(
                 title: l10n.expectedProfit,
-                value: "${state.totalExpectedProfit.toStringAsFixed(0)} ${l10n.currencyEg}",
+                value: "${CurrencyFormatter.formatKes(state.totalExpectedProfit)}",
                 icon: LucideIcons.trendingUp,
                 color: AppColors.successColor,
                 tooltip: l10n.expectedProfitTooltip,
@@ -510,19 +511,19 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
                 )),
                 DataCell(Center(
                   child: Text(
-                    "${item.totalHistoricValue.toStringAsFixed(0)} ${l10n.currencyEg}",
+                    "${CurrencyFormatter.formatKes(item.totalHistoricValue)}",
                     style: const TextStyle(fontFamily: 'Cairo', fontSize: 12.5, color: AppColors.textSecondary),
                   ),
                 )),
                 DataCell(Center(
                   child: Text(
-                    "${item.totalCurrentWholesaleValue.toStringAsFixed(0)} ${l10n.currencyEg}",
+                    "${CurrencyFormatter.formatKes(item.totalCurrentWholesaleValue)}",
                     style: const TextStyle(fontFamily: 'Cairo', fontSize: 12.5, color: AppColors.primaryColor, fontWeight: FontWeight.bold),
                   ),
                 )),
                 DataCell(Center(
                   child: Text(
-                    "${item.totalDefaultSellValue.toStringAsFixed(0)} ${l10n.currencyEg}",
+                    "${CurrencyFormatter.formatKes(item.totalDefaultSellValue)}",
                     style: const TextStyle(fontFamily: 'Cairo', fontSize: 12.5, color: AppColors.secondaryColor, fontWeight: FontWeight.bold),
                   ),
                 )),
@@ -778,7 +779,7 @@ class _StockSummaryChartsState extends State<StockSummaryCharts> {
                 child: _buildPieChartCard(
                   title: l10n.stockValueDistribution,
                   subtitle: l10n.capitalInGoods,
-                  totalText: l10n.totalValueAmount(totalValue.toStringAsFixed(0)),
+                  totalText: l10n.totalValueAmount(CurrencyFormatter.formatAmount(totalValue)),
                   items: valueItems,
                   isQty: false,
                   touchedIndex: _touchedValueIndex,
@@ -804,7 +805,7 @@ class _StockSummaryChartsState extends State<StockSummaryCharts> {
               _buildPieChartCard(
                 title: l10n.stockValueDistribution,
                 subtitle: l10n.capitalInGoods,
-                totalText: l10n.totalValueAmount(totalValue.toStringAsFixed(0)),
+                totalText: l10n.totalValueAmount(CurrencyFormatter.formatAmount(totalValue)),
                 items: valueItems,
                 isQty: false,
                 touchedIndex: _touchedValueIndex,
@@ -958,7 +959,7 @@ class _StockSummaryChartsState extends State<StockSummaryCharts> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            isQty ? l10n.unitCount(e.value.toInt()) : "${e.value.toStringAsFixed(0)} ${l10n.currencyEg}",
+                            isQty ? l10n.unitCount(e.value.toInt()) : "${CurrencyFormatter.formatKes(e.value)}",
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 10.5,

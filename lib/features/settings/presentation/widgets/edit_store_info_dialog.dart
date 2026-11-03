@@ -65,7 +65,7 @@ class _EditStoreInfoDialogState extends State<EditStoreInfoDialog> {
       'logoPath': logoPath ?? '',
     };
 
-    MotionSnackBarSuccess(context, l10n.infoSavedSuccess);
+    motionSnackBarSuccess(context, l10n.infoSavedSuccess);
 
     Navigator.of(context).pop(updatedInfo);
   }
@@ -347,7 +347,7 @@ class _EditStoreInfoDialogState extends State<EditStoreInfoDialog> {
       }
     } catch (e) {
       if (mounted) {
-        MotionSnackBarError(context, AppLocalizations.of(context).error);
+        motionSnackBarError(context, AppLocalizations.of(context).error);
       }
     }
   }

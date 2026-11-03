@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class AnalyticsMonthlySalesChart extends StatefulWidget {
   final Map<String, double> monthlySales;
@@ -49,12 +50,7 @@ class _AnalyticsMonthlySalesChartState extends State<AnalyticsMonthlySalesChart>
   }
 
   String _formatAmount(double amount) {
-    if (amount >= 1000000) {
-      return '${(amount / 1000000).toStringAsFixed(1)}M';
-    } else if (amount >= 1000) {
-      return '${(amount / 1000).toStringAsFixed(1)}K';
-    }
-    return amount.toStringAsFixed(0);
+    return CurrencyFormatter.formatAmount(amount);
   }
 
   @override
@@ -144,7 +140,7 @@ class _AnalyticsMonthlySalesChartState extends State<AnalyticsMonthlySalesChart>
                         child: _buildStatItem(
                           icon: Icons.monetization_on_rounded,
                           label: l10n.totalSales,
-                          value: '${_formatAmount(totalSales)} ${l10n.currencyEg}',
+                          value: CurrencyFormatter.formatKes(totalSales),
                           color: AppColors.primaryColor,
                         ),
                       ),
@@ -157,7 +153,7 @@ class _AnalyticsMonthlySalesChartState extends State<AnalyticsMonthlySalesChart>
                         child: _buildStatItem(
                           icon: Icons.trending_up_rounded,
                           label: l10n.monthlyAverage,
-                          value: '${_formatAmount(avgMonthly)} ${l10n.currencyEg}',
+                          value: CurrencyFormatter.formatKes(avgMonthly),
                           color: AppColors.secondaryColor,
                         ),
                       ),
@@ -224,7 +220,7 @@ class _AnalyticsMonthlySalesChartState extends State<AnalyticsMonthlySalesChart>
                                 final label = _monthLabel(entries[group.x.toInt()].key, l10n);
                                 final value = rod.toY;
                                 return BarTooltipItem(
-                                  '$label\n${_formatAmount(value)} ${l10n.currencyEg}',
+                                  '$label\n${CurrencyFormatter.formatKes(value)}',
                                   const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

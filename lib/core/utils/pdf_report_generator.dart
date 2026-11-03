@@ -3,6 +3,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 import '../../features/sessions/data/models/daily_report_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class PdfReportGenerator {
   static Future<File> generateDailyReportPDF(
@@ -57,8 +58,8 @@ class PdfReportGenerator {
                       .map((p) => [
                             p.productName,
                             p.quantitySold.toString(),
-                            p.revenue.toStringAsFixed(2),
-                            p.profit.toStringAsFixed(2)
+                            CurrencyFormatter.formatKes(p.revenue),
+                            CurrencyFormatter.formatKes(p.profit)
                           ])
                       .toList(),
                   cellAlignment: pw.Alignment.centerLeft,
@@ -95,7 +96,7 @@ class PdfReportGenerator {
           pw.Text(label,
               style:
                    pw.TextStyle(fontSize: 14, fontWeight: pw.FontWeight.bold)),
-          pw.Text(value.toStringAsFixed(2)),
+          pw.Text(CurrencyFormatter.formatKes(value)),
         ],
       ),
     );

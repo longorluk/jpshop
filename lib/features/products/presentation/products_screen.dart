@@ -143,19 +143,19 @@ class ProductsScreenState extends State<ProductsScreen> {
                         child: BlocConsumer<ProductCubit, ProductStates>(
                           listener: (context, state) {
                             if (state is ProductSuccessState) {
-                              MotionSnackBarSuccess(context, _translateMsg(context, state.msg));
+                              motionSnackBarSuccess(context, _translateMsg(context, state.msg));
                             }
                             if (state is ProductErrorState) {
-                              MotionSnackBarError(context, state.message);
+                              motionSnackBarError(context, state.message);
                             }
                             if (state is CategorySuccessState) {
-                              MotionSnackBarSuccess(context, _translateMsg(context, state.msg));
+                              motionSnackBarSuccess(context, _translateMsg(context, state.msg));
                             }
                             if (state is CategoryErrorState) {
-                              MotionSnackBarError(context, state.message);
+                              motionSnackBarError(context, state.message);
                             }
                             if (state is CategoryErrorDeleteState) {
-                              MotionSnackBarError(context, state.message);
+                              motionSnackBarError(context, state.message);
                               showCategoryActionDialog(
                                 categorie: categories,
                                 category: state.category,
@@ -358,7 +358,7 @@ Future<Map<String, String>?> showCategoryActionDialog({
   List<String> categories =
       categorie.where((c) => (c != category && c != l10n.all)).toList();
   if (categories.isEmpty) {
-    MotionSnackBarInfo(context, l10n.noOtherCategoriesToMove);
+    motionSnackBarInfo(context, l10n.noOtherCategoriesToMove);
     return Future.value(null);
   }
   categoryFilter = categories[0];

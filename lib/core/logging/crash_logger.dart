@@ -40,7 +40,7 @@ class CrashLogger {
       _isInitialized = true;
       FileLogger.info('CrashLogger initialized', source: 'CrashLogger');
     } catch (e) {
-      print('⚠️ Failed to initialize CrashLogger: $e');
+      debugPrint('⚠️ Failed to initialize CrashLogger: $e');
     }
   }
 
@@ -126,9 +126,9 @@ class CrashLogger {
       await sink.flush();
       await sink.close();
       
-      print('💥 Crash dump created: $crashFileName');
+      debugPrint('💥 Crash dump created: $crashFileName');
     } catch (e) {
-      print('⚠️ Failed to create crash dump: $e');
+      debugPrint('⚠️ Failed to create crash dump: $e');
     }
   }
 

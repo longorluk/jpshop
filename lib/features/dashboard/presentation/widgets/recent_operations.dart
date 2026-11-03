@@ -25,7 +25,7 @@ class _RecentOperationsState extends State<RecentOperations> {
   List<SessionActivityGroup> _groups = [];
   bool _loading = true;
   bool _loadingMore = false;
-  int _sessionLimit = 5;
+  bool _allLoaded = false;
   StreamSubscription? _activitySub;
 
   @override
@@ -49,7 +49,7 @@ class _RecentOperationsState extends State<RecentOperations> {
     if (!silent) setState(() => _loading = true);
     try {
       final groups = await ActivityLogger()
-          .getActivitiesGroupedBySession(sessionLimit: _sessionLimit);
+          .getActivitiesGroupedBySession(sessionLimit: 5);
       if (mounted) {
         setState(() {
           _groups = groups;
@@ -61,17 +61,17 @@ class _RecentOperationsState extends State<RecentOperations> {
     }
   }
 
-  Future<void> _loadMore() async {
+  Future<void> _loadAll() async {
     if (_loadingMore) return;
     setState(() => _loadingMore = true);
-    _sessionLimit += 5;
     try {
       final groups = await ActivityLogger()
-          .getActivitiesGroupedBySession(sessionLimit: _sessionLimit);
+          .getActivitiesGroupedBySession(sessionLimit: null);
       if (mounted) {
         setState(() {
           _groups = groups;
           _loadingMore = false;
+          _allLoaded = true;
         });
       }
     } catch (e) {
@@ -606,13 +606,19 @@ class _RecentOperationsState extends State<RecentOperations> {
         child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
       );
     }
+    final isArabic = l10n.localeName == 'ar';
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Center(
         child: TextButton.icon(
-          onPressed: _loadMore,
-          icon: const Icon(LucideIcons.plus, size: 14),
-          label: Text(l10n.showMore),
+          onPressed: _allLoaded ? null : _loadAll,
+          icon: Icon(_allLoaded ? LucideIcons.check : LucideIcons.plus,
+              size: 14),
+          label: Text(_allLoaded
+              ? (isArabic
+                  ? '\u062A\u0645 \u062A\u062D\u0645\u064A\u0644 \u062C\u0645\u064A\u0639 \u0627\u0644\u0639\u0645\u0644\u064A\u0627\u062A'
+                  : 'All operations loaded')
+              : l10n.showMore),
           style: TextButton.styleFrom(
             foregroundColor: AppColors.primaryColor,
             visualDensity: VisualDensity.compact,

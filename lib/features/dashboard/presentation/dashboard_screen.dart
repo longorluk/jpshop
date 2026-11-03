@@ -181,7 +181,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           BlocListener<NotificationsCubit, NotificationsStates>(
             listener: (context, state) {
               if (state is NotificationsError) {
-                MotionSnackBarWarning(context, state.message);
+                motionSnackBarWarning(context, state.message);
               }
             },
           ),
@@ -345,7 +345,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       try {
         PermissionGuard.checkReportAccess(curUser);
       } catch (e) {
-        MotionSnackBarError(context, e.toString());
+        motionSnackBarError(context, e.toString());
         return;
       }
     }
@@ -365,7 +365,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (index != -1) {
       _onSidebarSelected(context, index);
     } else {
-      MotionSnackBarWarning(
+      motionSnackBarWarning(
           context, AppLocalizations.of(context).screenUnavailable);
     }
   }

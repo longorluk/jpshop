@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 // lib/features/analytics/data/analytics_repository_impl.dart
 
 import 'package:barasa_softwares/core/data/services/persistence_initializer.dart';
@@ -248,7 +249,7 @@ class AnalyticsRepositoryImpl with RepositoryPersistenceMixin implements Analyti
       }
 
       final summary = await getSummary(start, end);
-      return summary.fold(
+      return await summary.fold(
         (f) => Left(f),
         (analyticsModel) async {
              final topProducts = await getTopProducts(50, start, end);
@@ -305,7 +306,7 @@ class AnalyticsRepositoryImpl with RepositoryPersistenceMixin implements Analyti
         final ids = salesIds.map((r) => r['id'] as String).toList();
         final salesResult = await salesRepo.getSalesByIds(ids);
         
-        return salesResult.fold(
+        return await salesResult.fold(
           (f) => Left(f),
           (sales) => Right(_generateReportFromSales(sales, DateTime.now()))
         );
@@ -419,9 +420,9 @@ class AnalyticsRepositoryImpl with RepositoryPersistenceMixin implements Analyti
   @override
   Future<void> deleteReport(String reportId) async {
     try {
-      print('Delete report called for ID: $reportId (no-op in current implementation)');
+      debugPrint('Delete report called for ID: $reportId (no-op in current implementation)');
     } catch (e) {
-      print('Error in deleteReport: ${e.toString()}');
+      debugPrint('Error in deleteReport: ${e.toString()}');
     }
   }
 

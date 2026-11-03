@@ -6,6 +6,7 @@ import 'package:pdf/widgets.dart' as pw;
 
 import '../../../l10n/app_localizations.dart';
 import '../data/models/daily_report_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class PdfAppColors {
   static const mutedColor = PdfColors.grey600;
@@ -129,7 +130,7 @@ class DailyReportPdfService {
               boldFont),
           _infoItem(
               l10n.netRevenueLabel,
-              '${report.netRevenue.toStringAsFixed(2)} ${l10n.currencyEg}',
+              '${CurrencyFormatter.formatKes(report.netRevenue)}',
               boldFont),
         ],
       ),
@@ -168,15 +169,15 @@ class DailyReportPdfService {
     final summaries = [
       _summaryBox(
           l10n.totalSalesLabel,
-          '${report.totalSales.toStringAsFixed(2)} ${l10n.currencyEg}',
+          '${CurrencyFormatter.formatKes(report.totalSales)}',
           boldFont),
       _summaryBox(
           l10n.totalRefundsLabel,
-          '${report.totalRefunds.toStringAsFixed(2)} ${l10n.currencyEg}',
+          '${CurrencyFormatter.formatKes(report.totalRefunds)}',
           boldFont),
       _summaryBox(
           l10n.netProfitLabel,
-          '${report.netRevenue.toStringAsFixed(2)} ${l10n.currencyEg}',
+          '${CurrencyFormatter.formatKes(report.netRevenue)}',
           boldFont),
       _summaryBox(
           l10n.transactionCountLabel, '${report.totalTransactions}', boldFont),
@@ -253,9 +254,9 @@ class DailyReportPdfService {
       return [
         p.productName,
         p.quantitySold.toString(),
-        (p.revenue.toStringAsFixed(2)),
-        (p.cost.toStringAsFixed(2)),
-        (p.profit.toStringAsFixed(2)),
+        CurrencyFormatter.formatKes(p.revenue),
+        CurrencyFormatter.formatKes(p.cost),
+        CurrencyFormatter.formatKes(p.profit),
         '${p.profitMargin.toStringAsFixed(1)}%',
       ];
     }).toList();

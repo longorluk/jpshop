@@ -6,6 +6,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:barasa_softwares/features/sales/data/models/sale_model.dart';
 import 'package:barasa_softwares/features/settings/data/models/store_info_model.dart';
 import 'package:barasa_softwares/l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class ReceiptPdfGenerator {
   static Future<Uint8List> generateReceipt({
@@ -63,7 +64,7 @@ class ReceiptPdfGenerator {
               pw.Divider(),
               _buildItemsTable(sale.saleItems, bold, regular, isThermal, l10n),
               pw.Divider(),
-              _buildRow(l10n.grandTotalLabelPdf, '${sale.total.toStringAsFixed(2)} ${l10n.currencyEg}', bold, fontSize: 14),
+              _buildRow(l10n.grandTotalLabelPdf, '${CurrencyFormatter.formatKes(sale.total)}', bold, fontSize: 14),
               pw.SizedBox(height: 10),
               pw.Text(l10n.thankYouShopping, style: pw.TextStyle(font: regular, fontSize: 10)),
               if (storeInfo.vat.isNotEmpty)
@@ -94,8 +95,8 @@ class ReceiptPdfGenerator {
       data: items.map((i) => [
         i.name,
         i.quantity.toString(),
-        i.price.toStringAsFixed(0),
-        i.total.toStringAsFixed(0),
+        CurrencyFormatter.formatAmount(i.price),
+        CurrencyFormatter.formatAmount(i.total),
       ]).toList(),
       headerStyle: pw.TextStyle(font: bold, fontSize: 8),
       cellStyle: pw.TextStyle(font: regular, fontSize: 8),

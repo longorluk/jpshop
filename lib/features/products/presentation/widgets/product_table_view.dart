@@ -5,6 +5,7 @@ import '../../../../core/components/empty_state.dart';
 import '../../../../core/components/local_image_view.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class ProductsTableView extends StatelessWidget {
   final List<Product> products;
@@ -198,24 +199,42 @@ class ProductsTableView extends StatelessWidget {
                                       color: AppColors.primaryColor)),
                             ),
                           ),
-                          DataCell(Text(
-                              '${product.price.toStringAsFixed(2)} ${l10n.currencyEg}',
+                          DataCell(FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Text(
+                              CurrencyFormatter.formatKes(product.price),
                               style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13))),
+                                  fontWeight: FontWeight.bold, fontSize: 13),
+                              maxLines: 1,
+                            ),
+                          )),
                           if (isManager) ...[
-                            DataCell(Text(
-                                '${product.wholesalePrice.toStringAsFixed(2)} ${l10n.currencyEg}',
+                            DataCell(FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: AlignmentDirectional.centerStart,
+                              child: Text(
+                                CurrencyFormatter.formatKes(
+                                    product.wholesalePrice),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
-                                    color: Colors.blueGrey))),
-                            DataCell(Text(
-                                '${product.minPrice.toStringAsFixed(2)} ${l10n.currencyEg}',
+                                    color: Colors.blueGrey),
+                                maxLines: 1,
+                              ),
+                            )),
+                            DataCell(FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: AlignmentDirectional.centerStart,
+                              child: Text(
+                                CurrencyFormatter.formatKes(product.minPrice),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
-                                    color: Colors.deepOrange))),
+                                    color: Colors.deepOrange),
+                                maxLines: 1,
+                              ),
+                            )),
                           ],
                           DataCell(Text('${product.quantity}',
                               style: const TextStyle(

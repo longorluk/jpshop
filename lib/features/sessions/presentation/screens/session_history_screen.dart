@@ -19,6 +19,7 @@ import 'daily_report_preview_screen.dart';
 import 'daily_report_datasheet_screen.dart';
 
 import '../../../../core/localization/translation_helper.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class SessionHistoryScreen extends StatefulWidget {
   final bool isEmbedded;
@@ -1605,7 +1606,7 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen>
                 children: [
                   _buildReportStat(
                     l10n.netSales,
-                    '${report.netRevenue.toStringAsFixed(0)} ${l10n.currencyEg}',
+                    '${CurrencyFormatter.formatKes(report.netRevenue)}',
                     const Color(0xFF059669),
                     LucideIcons.trendingUp,
                   ),
@@ -1619,7 +1620,7 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen>
                   _buildReportStatDivider(),
                   _buildReportStat(
                     l10n.refunds,
-                    '${report.totalRefunds.toStringAsFixed(0)} ${l10n.currencyEg}',
+                    '${CurrencyFormatter.formatKes(report.totalRefunds)}',
                     AppColors.errorColor,
                     LucideIcons.cornerUpLeft,
                   ),

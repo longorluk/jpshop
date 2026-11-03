@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/services.dart' show rootBundle;
@@ -9,6 +10,7 @@ import '../data/invoice_models.dart';
 import '../../settings/data/models/store_info_model.dart';
 import 'package:barasa_softwares/core/di/dependency_injection.dart';
 import '../../settings/data/repository/settings_repository_imp.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class InvoicePdfService {
   static pw.Font? _cachedArabicFont;
@@ -45,7 +47,7 @@ class InvoicePdfService {
         _logoCache[cacheKey] = image;
         return image;
       } catch (e) {
-        print('❌ Error loading logo from $logoPath: $e');
+        debugPrint('❌ Error loading logo from $logoPath: $e');
       }
     }
 
@@ -209,8 +211,8 @@ class InvoicePdfService {
                     .map((l) => [
                           l.name,
                           l.qty.toString(),
-                          l.price.toStringAsFixed(0),
-                          l.total.toStringAsFixed(0),
+                          CurrencyFormatter.formatAmount(l.price),
+                          CurrencyFormatter.formatAmount(l.total),
                         ])
                     .toList(),
                 headerStyle: pw.TextStyle(
@@ -236,14 +238,14 @@ class InvoicePdfService {
               // Totals
               _receiptMetaRow(
                   l10n.itemsTotalLabel,
-                  '${data.subtotal.toStringAsFixed(2)} ${l10n.currencyEg}',
+                  '${CurrencyFormatter.formatKes(data.subtotal)}',
                   arabicFont,
                   boldFont,
                   fontSize: 8.5),
               if (data.discount > 0)
                 _receiptMetaRow(
                     l10n.appliedDiscount,
-                    '- ${data.discount.toStringAsFixed(2)} ${l10n.currencyEg}',
+                    '- ${CurrencyFormatter.formatKes(data.discount)}',
                     arabicFont,
                     boldFont,
                     fontSize: 8.5,
@@ -251,7 +253,7 @@ class InvoicePdfService {
               if (data.tax > 0)
                 _receiptMetaRow(
                     l10n.valueAddedTax,
-                    '${data.tax.toStringAsFixed(2)} ${l10n.currencyEg}',
+                    '${CurrencyFormatter.formatKes(data.tax)}',
                     arabicFont,
                     boldFont,
                     fontSize: 8.5),
@@ -264,7 +266,7 @@ class InvoicePdfService {
 
               _receiptMetaRow(
                 l10n.grandTotalLabelPdf,
-                '${data.grandTotal.toStringAsFixed(2)} ${l10n.currencyEg}',
+                '${CurrencyFormatter.formatKes(data.grandTotal)}',
                 boldFont,
                 boldFont,
                 fontSize: 11,
@@ -605,11 +607,11 @@ class InvoicePdfService {
               _tableCell(line.name, regular,
                   align: pw.TextAlign.right, textDark: textDark),
               _tableCell(line.qty.toString(), regular, textDark: textDark),
-              _tableCell('${line.price.toStringAsFixed(2)} ${l10n.currencyEg}',
+              _tableCell(CurrencyFormatter.formatAmount(line.price),
                   regular,
                   textDark: textDark),
               _tableCell(
-                  '${line.total.toStringAsFixed(2)} ${l10n.currencyEg}', bold,
+                  CurrencyFormatter.formatAmount(line.total), bold,
                   textDark: textDark),
             ],
           );
@@ -687,21 +689,21 @@ class InvoicePdfService {
             children: [
               _summaryRow(
                   l10n.subtotalLabel,
-                  '${data.subtotal.toStringAsFixed(2)} ${l10n.currencyEg}',
+                  '${CurrencyFormatter.formatKes(data.subtotal)}',
                   regular,
                   regular,
                   textDark),
               if (data.discount > 0)
                 _summaryRow(
                     l10n.invoiceDiscountsLabel,
-                    '- ${data.discount.toStringAsFixed(2)} ${l10n.currencyEg}',
+                    '- ${CurrencyFormatter.formatKes(data.discount)}',
                     regular,
                     regular,
                     accentColor),
               if (data.tax > 0)
                 _summaryRow(
                     l10n.valueAddedTax,
-                    '${data.tax.toStringAsFixed(2)} ${l10n.currencyEg}',
+                    '${CurrencyFormatter.formatKes(data.tax)}',
                     regular,
                     regular,
                     textDark),
@@ -722,7 +724,7 @@ class InvoicePdfService {
                           font: bold, fontSize: 11, color: PdfColors.white),
                     ),
                     pw.Text(
-                      '${data.grandTotal.toStringAsFixed(2)} ${l10n.currencyEg}',
+                      '${CurrencyFormatter.formatKes(data.grandTotal)}',
                       style: pw.TextStyle(
                           font: bold, fontSize: 12, color: PdfColors.white),
                     ),
@@ -784,6 +786,7 @@ class InvoicePdfService {
   }
 
   static String _fmt(DateTime d) =>
-      '${d.year}/${_2(d.month)}/${_2(d.day)} ${_2(d.hour)}:${_2(d.minute)}';
-  static String _2(int x) => x.toString().padLeft(2, '0');
+      '${d.year}/${_twoDigits(d.month)}/${_twoDigits(d.day)} '
+      '${_twoDigits(d.hour)}:${_twoDigits(d.minute)}';
+  static String _twoDigits(int x) => x.toString().padLeft(2, '0');
 }

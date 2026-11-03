@@ -6,6 +6,7 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../auth/data/models/user_model.dart';
 import '../../../auth/presentation/cubit/user_cubit.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class EnhancedProductCard extends StatelessWidget {
   final Product product;
@@ -132,12 +133,19 @@ class EnhancedProductCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 2),
-                Text(
-                  "${product.price.toStringAsFixed(2)} ${l10n.currencyEg}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: value,
-                    color: AppColors.successColor,
+                SizedBox(
+                  width: double.infinity,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      CurrencyFormatter.formatKes(product.price),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: value,
+                        color: AppColors.successColor,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -183,30 +191,48 @@ class EnhancedProductCard extends StatelessWidget {
               flex: 2,
               child: Row(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(l10n.wholesalePrice, style: TextStyle(fontSize: small, color: AppColors.mutedColor)),
-                      const SizedBox(height: 2),
-                      Text(
-                        product.wholesalePrice.toStringAsFixed(2),
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: value, color: AppColors.accentGold),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(l10n.wholesalePrice, style: TextStyle(fontSize: small, color: AppColors.mutedColor), maxLines: 1, overflow: TextOverflow.ellipsis),
+                        const SizedBox(height: 2),
+                        SizedBox(
+                          width: double.infinity,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Text(
+                              CurrencyFormatter.formatKes(product.wholesalePrice),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: value, color: AppColors.accentGold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(l10n.minPriceColumn, style: TextStyle(fontSize: small, color: AppColors.mutedColor)),
-                      const SizedBox(height: 2),
-                      Text(
-                        product.minPrice.toStringAsFixed(2),
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: value, color: Colors.deepOrange),
-                      ),
-                    ],
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(l10n.minPriceColumn, style: TextStyle(fontSize: small, color: AppColors.mutedColor), maxLines: 1, overflow: TextOverflow.ellipsis),
+                        const SizedBox(height: 2),
+                        SizedBox(
+                          width: double.infinity,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Text(
+                              CurrencyFormatter.formatKes(product.minPrice),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: value, color: Colors.deepOrange),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

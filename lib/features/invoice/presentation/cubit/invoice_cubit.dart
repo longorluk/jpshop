@@ -15,6 +15,7 @@ import '../../../../core/session/session_manager.dart';
 import 'package:collection/collection.dart'; // for firstWhereOrNull
 
 import 'invoice_state.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class InvoiceCubit extends Cubit<InvoiceState> {
   final SalesRepository repository;
@@ -151,7 +152,7 @@ class InvoiceCubit extends Cubit<InvoiceState> {
       );
       await getIt<ActivityLogger>().logActivity(
         type: ActivityType.invoiceDelete,
-        description: 'Delete invoice: ${sale.total.toStringAsFixed(2)} KES',
+        description: 'Delete invoice: ${CurrencyFormatter.formatKes(sale.total)}',
         userName: getIt<UserCubit>().currentUser.name,
         sessionId: sid,
         details: {'saleId': saleId, 'items': sale.items},
@@ -255,7 +256,7 @@ class InvoiceCubit extends Cubit<InvoiceState> {
     // 8. Log refund activity
     await getIt<ActivityLogger>().logActivity(
       type: ActivityType.refund,
-      description: 'Refund: ${refundTotal.toStringAsFixed(2)} KES',
+      description: 'Refund: ${CurrencyFormatter.formatKes(refundTotal)}',
       userName: getIt<UserCubit>().currentUser.name,
       sessionId: session.id,
       details: {

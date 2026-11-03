@@ -28,6 +28,7 @@ import '../../../../core/data/models/activity_log.dart';
 import '../../../../core/session/session_manager.dart';
 import 'package:barasa_softwares/features/invoice/presentation/cubit/invoice_cubit.dart';
 import '../../settings/presentation/cubit/settings_cubit.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class SalesScreen extends StatefulWidget {
   final SalesRepository? repository;
@@ -127,11 +128,11 @@ class _SalesScreenState extends State<SalesScreen>
     final result = await _repository.findProductByBarcode(code);
 
     result.fold((failure) {
-      MotionSnackBarError(context,
+      motionSnackBarError(context,
           AppLocalizations.of(context).searchErrorMsg(failure.message));
     }, (product) {
       if (product == null) {
-        MotionSnackBarError(
+        motionSnackBarError(
             context, AppLocalizations.of(context).productNotFound(code));
         _barcodeController.clear();
         setState(() {});
@@ -140,7 +141,7 @@ class _SalesScreenState extends State<SalesScreen>
       }
 
       if (product.quantity <= 0) {
-        MotionSnackBarError(context, AppLocalizations.of(context).outOfStock);
+        motionSnackBarError(context, AppLocalizations.of(context).outOfStock);
         _barcodeController.clear();
         setState(() {});
         _barcodeFocusNode.requestFocus();
@@ -151,7 +152,7 @@ class _SalesScreenState extends State<SalesScreen>
       if (idx != -1) {
         final currentQty = _cartItems[idx]['qty'] as int;
         if (currentQty >= product.quantity) {
-          MotionSnackBarWarning(context,
+          motionSnackBarWarning(context,
               AppLocalizations.of(context).maxQtyReached(product.quantity));
         } else {
           _cartItems[idx]['qty'] = currentQty + 1;
@@ -177,7 +178,7 @@ class _SalesScreenState extends State<SalesScreen>
 
   Future<void> _onCheckout() async {
     if (_cartItems.isEmpty) {
-      MotionSnackBarError(context, AppLocalizations.of(context).cartEmpty);
+      motionSnackBarError(context, AppLocalizations.of(context).cartEmpty);
       return;
     }
 
@@ -209,7 +210,7 @@ class _SalesScreenState extends State<SalesScreen>
         userName: userName,
       );
     } catch (e) {
-      print('DEBUG_CHECKOUT: Failed to get session: $e');
+      debugPrint('DEBUG_CHECKOUT: Failed to get session: $e');
     }
 
     final sale = Sale(
@@ -237,14 +238,14 @@ class _SalesScreenState extends State<SalesScreen>
 
     result.fold(
       (failure) {
-        MotionSnackBarError(context,
+        motionSnackBarError(context,
             AppLocalizations.of(context).saveSaleFailed(failure.message));
         setState(() {});
       },
       (_) async {
-        MotionSnackBarSuccess(
+        motionSnackBarSuccess(
           context,
-          AppLocalizations.of(context).saleCompleted(total.toStringAsFixed(2),
+          AppLocalizations.of(context).saleCompleted(CurrencyFormatter.formatAmount(total),
               AppLocalizations.of(context).currencyEg),
         );
 
@@ -253,7 +254,7 @@ class _SalesScreenState extends State<SalesScreen>
             await getIt<ActivityLogger>().logActivity(
               type: ActivityType.sale,
               description: AppLocalizations.of(context).saleActivityDesc(
-                  total.toStringAsFixed(2),
+                  CurrencyFormatter.formatAmount(total),
                   AppLocalizations.of(context).currencyEg),
               userName: userName,
               sessionId: sessionId,
@@ -265,9 +266,9 @@ class _SalesScreenState extends State<SalesScreen>
               eventKey: 'saleCompleted',
               parameters: {'user': userName, 'total': total.toStringAsFixed(2)},
             );
-            print('DEBUG_CHECKOUT: Sale activity logged ✓');
+            debugPrint('DEBUG_CHECKOUT: Sale activity logged ✓');
           } catch (e) {
-            print('DEBUG_CHECKOUT: Failed to log activity: $e');
+            debugPrint('DEBUG_CHECKOUT: Failed to log activity: $e');
           }
         }
 
@@ -376,7 +377,7 @@ class _SalesScreenState extends State<SalesScreen>
               const SizedBox(height: 8),
               Text(
                 l10n.saleCompleted(
-                    _totalAmount.toStringAsFixed(2), l10n.currencyEg),
+                    CurrencyFormatter.formatAmount(_totalAmount), l10n.currencyEg),
                 style: const TextStyle(
                   fontFamily: 'Cairo',
                   fontSize: 12,
@@ -505,7 +506,7 @@ class _SalesScreenState extends State<SalesScreen>
                                   _cartItems[i]['qty'] = currentQty + 1;
                                   setState(() {});
                                 } else {
-                                  MotionSnackBarWarning(
+                                  motionSnackBarWarning(
                                       context,
                                       AppLocalizations.of(context)
                                           .cantAddMoreStock(stockQuantity));
@@ -678,7 +679,7 @@ class _SalesScreenState extends State<SalesScreen>
                           _cartItems[i]['qty'] = currentQty + 1;
                           setState(() {});
                         } else {
-                          MotionSnackBarWarning(
+                          motionSnackBarWarning(
                               context,
                               AppLocalizations.of(context)
                                   .cantAddMoreStock(stockQuantity));

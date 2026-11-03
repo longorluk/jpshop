@@ -5,6 +5,7 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../data/analytics_repository_impl.dart';
 import '../../../sessions/data/models/product_performance_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class AnalyticsMonthlyProductsSection extends StatefulWidget {
   final Map<String, double> monthlySales;
@@ -230,7 +231,7 @@ class _AnalyticsMonthlyProductsSectionState
                       ),
                       const Spacer(),
                       Text(
-                        '${widget.monthlySales[_selectedMonth]!.toStringAsFixed(2)} ${l10n.currencyEg}',
+                        '${CurrencyFormatter.formatKes(widget.monthlySales[_selectedMonth]!)}',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -338,7 +339,7 @@ class _AnalyticsMonthlyProductsSectionState
                         ),
                       ),
                       Text(
-                        '${product.revenue.toStringAsFixed(0)} ${l10n.currencyEg}',
+                        '${CurrencyFormatter.formatKes(product.revenue)}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,

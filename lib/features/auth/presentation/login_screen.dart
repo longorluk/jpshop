@@ -74,11 +74,11 @@ class _LoginScreenState extends State<LoginScreen> {
     final password = _passwordController.text.trim();
     final l10n = AppLocalizations.of(context);
     if (username.isEmpty) {
-      MotionSnackBarError(context, l10n.enterUsername);
+      motionSnackBarError(context, l10n.enterUsername);
       return;
     }
     if (password.isEmpty) {
-      MotionSnackBarError(context, l10n.enterPassword);
+      motionSnackBarError(context, l10n.enterPassword);
       return;
     }
     getIt<UserCubit>().login(username, password);
@@ -618,14 +618,14 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocListener<UserCubit, UserStates>(
         listener: (context, state) {
           if (state is UserFailure) {
-            MotionSnackBarError(
+            motionSnackBarError(
                 context, TranslationHelper.translate(context, state.error));
           } else if (state is LoginSuccess) {
             if (state.isExistingSession) {
-              MotionSnackBarInfo(
+              motionSnackBarInfo(
                   context, TranslationHelper.translate(context, state.message));
             } else {
-              MotionSnackBarSuccess(
+              motionSnackBarSuccess(
                   context, TranslationHelper.translate(context, state.message));
             }
             Navigator.pushReplacement(
@@ -634,7 +634,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   builder: (context) => const DashboardScreen(),
                 ));
           } else if (state is UserSuccess) {
-            MotionSnackBarSuccess(
+            motionSnackBarSuccess(
                 context, TranslationHelper.translate(context, state.message));
             if (state.message == "dayClosedSuccessReport") {
               Navigator.pushReplacement(
@@ -643,7 +643,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (context) => const DashboardScreen(),
                   ));
             } else {
-              MotionSnackBarInfo(
+              motionSnackBarInfo(
                   context, TranslationHelper.translate(context, state.message));
             }
           }

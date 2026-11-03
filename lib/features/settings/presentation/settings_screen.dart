@@ -61,7 +61,7 @@ class _SettingsScreenContent extends StatelessWidget {
               Navigator.of(context, rootNavigator: true)
                   .pop(); // Close loading only for session closure
             }
-            MotionSnackBarError(
+            motionSnackBarError(
                 context, TranslationHelper.translate(context, state.error));
           } else if (state is UserSuccessWithReport) {
             Navigator.of(context, rootNavigator: true).pop(); // Close loading
@@ -71,17 +71,18 @@ class _SettingsScreenContent extends StatelessWidget {
               _showReportDialog(context, state.report);
             } else {
               // For Cashier: Immediate Logout, No Report Dialog
-              MotionSnackBarSuccess(
+              motionSnackBarSuccess(
                   context, AppLocalizations.of(context).dayClosedSuccess);
               // Short delay to let the toast show
               Future.delayed(const Duration(milliseconds: 1500), () {
+                if (!context.mounted) return;
                 userCubit.logout();
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil('/login', (route) => false);
               });
             }
           } else if (state is UserSuccess) {
-            MotionSnackBarSuccess(
+            motionSnackBarSuccess(
                 context, TranslationHelper.translate(context, state.message));
           }
         },

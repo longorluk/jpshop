@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 // lib/core/data/services/checkpoint_service.dart
 
 import 'dart:io';
@@ -37,7 +38,7 @@ class CheckpointService {
   }) async {
     try {
       if (!PersistenceInitializer.isEnabled) {
-        print('⚠️ Checkpoint skipped: persistence not enabled');
+        debugPrint('⚠️ Checkpoint skipped: persistence not enabled');
         return false;
       }
 
@@ -53,7 +54,7 @@ class CheckpointService {
       try {
         await PersistenceInitializer.persistenceManager!.sqliteManager.checkpoint();
       } catch (e) {
-        print('⚠️ WAL checkpoint warning: $e');
+        debugPrint('⚠️ WAL checkpoint warning: $e');
       }
 
       // Create timestamped checkpoint folder
@@ -100,7 +101,7 @@ class CheckpointService {
       } catch (_) {}
 
       FileLogger.info('Checkpoint created: $chkName', source: 'Checkpoint');
-      print('✅ Checkpoint created: $chkName');
+      debugPrint('✅ Checkpoint created: $chkName');
 
       // Clean old checkpoints
       await _cleanOldCheckpoints();
@@ -108,7 +109,7 @@ class CheckpointService {
       return true;
     } catch (e, stack) {
       FileLogger.error('Checkpoint creation failed', error: e, stackTrace: stack, source: 'Checkpoint');
-      print('❌ Checkpoint failed: $e');
+      debugPrint('❌ Checkpoint failed: $e');
       return false;
     }
   }

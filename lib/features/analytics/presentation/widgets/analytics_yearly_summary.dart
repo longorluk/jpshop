@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class AnalyticsYearlySummary extends StatelessWidget {
   final Map<String, double> yearlySales;
@@ -74,7 +75,7 @@ class AnalyticsYearlySummary extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      l10n.totalLabel(_formatAmount(totalAll)),
+                      l10n.totalLabel(CurrencyFormatter.formatKes(totalAll)),
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -132,7 +133,7 @@ class AnalyticsYearlySummary extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '${_formatAmount(amount)} ${l10n.currencyEg}',
+                CurrencyFormatter.formatKes(amount),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -165,12 +166,4 @@ class AnalyticsYearlySummary extends StatelessWidget {
     );
   }
 
-  String _formatAmount(double amount) {
-    if (amount >= 1000000) {
-      return '${(amount / 1000000).toStringAsFixed(1)}M';
-    } else if (amount >= 1000) {
-      return '${(amount / 1000).toStringAsFixed(1)}K';
-    }
-    return amount.toStringAsFixed(0);
-  }
 }

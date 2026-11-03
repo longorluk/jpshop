@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dartz/dartz.dart';
 
@@ -47,7 +48,7 @@ class AnalyticsCubit extends Cubit<AnalyticsState> {
         await _loadAggregateAnalytics(startDate, endDate);
       }
     } catch (error, stackTrace) {
-      print('Error loading analytics: $error\n$stackTrace');
+      debugPrint('Error loading analytics: $error\n$stackTrace');
       if (!isClosed) {
         emit(AnalyticsError('Unexpected error loading data: ${error.toString()}'));
       }

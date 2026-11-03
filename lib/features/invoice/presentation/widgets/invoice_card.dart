@@ -5,6 +5,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/localization/translation_helper.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../sales/data/models/sale_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class InvoiceCard extends StatefulWidget {
   final Sale sale;
@@ -193,7 +194,7 @@ class _InvoiceCardState extends State<InvoiceCard> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              '${sale.total.toStringAsFixed(2)} ${l10n.currencyEg}',
+              '${CurrencyFormatter.formatKes(sale.total)}',
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 18,
@@ -291,7 +292,7 @@ class _InvoiceCardState extends State<InvoiceCard> {
               ),
             ),
             Text(
-              '${sale.total.toStringAsFixed(2)} ${l10n.currencyEg}',
+              '${CurrencyFormatter.formatKes(sale.total)}',
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 15,

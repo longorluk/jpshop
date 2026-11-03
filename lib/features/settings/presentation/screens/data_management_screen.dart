@@ -66,7 +66,7 @@ class _DataManagementScreenState extends State<DataManagementScreen>
       });
     } catch (e) {
       setState(() => _isLoading = false);
-      if (mounted) MotionSnackBarError(context, AppLocalizations.of(context).loadDataError(e.toString()));
+      if (mounted) motionSnackBarError(context, AppLocalizations.of(context).loadDataError(e.toString()));
     }
   }
 
@@ -83,13 +83,13 @@ class _DataManagementScreenState extends State<DataManagementScreen>
     try {
       final success = await manager.createBackup();
       if (success) {
-        if (mounted) MotionSnackBarSuccess(context, AppLocalizations.of(context).msgDataSaved);
+        if (mounted) motionSnackBarSuccess(context, AppLocalizations.of(context).msgDataSaved);
         await _loadData();
       } else {
-        if (mounted) MotionSnackBarError(context, AppLocalizations.of(context).backupFailed);
+        if (mounted) motionSnackBarError(context, AppLocalizations.of(context).backupFailed);
       }
     } catch (e) {
-      if (mounted) MotionSnackBarError(context, AppLocalizations.of(context).error);
+      if (mounted) motionSnackBarError(context, AppLocalizations.of(context).error);
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -112,15 +112,15 @@ class _DataManagementScreenState extends State<DataManagementScreen>
       final success = await manager.restoreFromBackup(backupPath);
       if (success) {
         if (mounted) {
-          MotionSnackBarSuccess(context, l10n.restoreSuccess);
+          motionSnackBarSuccess(context, l10n.restoreSuccess);
           await Future.delayed(const Duration(seconds: 2));
           exit(0);
         }
       } else {
-        if (mounted) MotionSnackBarError(context, l10n.restoreFailed);
+        if (mounted) motionSnackBarError(context, l10n.restoreFailed);
       }
     } catch (e) {
-      if (mounted) MotionSnackBarError(context, l10n.restoreError(e.toString()));
+      if (mounted) motionSnackBarError(context, l10n.restoreError(e.toString()));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -141,15 +141,15 @@ class _DataManagementScreenState extends State<DataManagementScreen>
       final success = await _checkpointService.restoreFromCheckpoint(checkpointPath);
       if (success) {
         if (mounted) {
-          MotionSnackBarSuccess(context, l10n.autoRestoreSuccess);
+          motionSnackBarSuccess(context, l10n.autoRestoreSuccess);
           await Future.delayed(const Duration(seconds: 2));
           exit(0);
         }
       } else {
-        if (mounted) MotionSnackBarError(context, l10n.autoRestoreFailed);
+        if (mounted) motionSnackBarError(context, l10n.autoRestoreFailed);
       }
     } catch (e) {
-      if (mounted) MotionSnackBarError(context, l10n.restoreError(e.toString()));
+      if (mounted) motionSnackBarError(context, l10n.restoreError(e.toString()));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -170,11 +170,11 @@ class _DataManagementScreenState extends State<DataManagementScreen>
       final dir = Directory(backupPath);
       if (await dir.exists()) {
         await dir.delete(recursive: true);
-        if (mounted) MotionSnackBarSuccess(context, l10n.deleteBackupSuccess);
+        if (mounted) motionSnackBarSuccess(context, l10n.deleteBackupSuccess);
         await _loadData();
       }
     } catch (e) {
-      if (mounted) MotionSnackBarError(context, l10n.deleteBackupFailed(e.toString()));
+      if (mounted) motionSnackBarError(context, l10n.deleteBackupFailed(e.toString()));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -1276,10 +1276,10 @@ class _DataManagementScreenState extends State<DataManagementScreen>
       
       if (mounted) {
         final l10n = AppLocalizations.of(context);
-        MotionSnackBarSuccess(context, l10n.modeChanged(mode == 'debug' ? l10n.modeDebug : l10n.modeRelease));
+        motionSnackBarSuccess(context, l10n.modeChanged(mode == 'debug' ? l10n.modeDebug : l10n.modeRelease));
       }
     } catch (e) {
-      if (mounted) MotionSnackBarError(context, AppLocalizations.of(context).saveSettingsFailed(e.toString()));
+      if (mounted) motionSnackBarError(context, AppLocalizations.of(context).saveSettingsFailed(e.toString()));
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
@@ -1301,10 +1301,10 @@ class _DataManagementScreenState extends State<DataManagementScreen>
     try {
       await DebugSeeder.clearAndReSeed();
       if (mounted) {
-        MotionSnackBarSuccess(context, l10n.reseedSuccess);
+        motionSnackBarSuccess(context, l10n.reseedSuccess);
       }
     } catch (e) {
-      if (mounted) MotionSnackBarError(context, l10n.reseedError(e.toString()));
+      if (mounted) motionSnackBarError(context, l10n.reseedError(e.toString()));
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);

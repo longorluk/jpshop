@@ -8,6 +8,7 @@ import '../data/models/activity_log.dart';
 import '../data/services/persistence_initializer.dart';
 
 import '../localization/translation_helper.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class ActivityLogger {
   static final ActivityLogger _instance = ActivityLogger._internal();
@@ -52,7 +53,7 @@ class ActivityLogger {
       }
       _controller.add(_activities);
     } catch (e) {
-      print('Failed to load recent activities: $e');
+      debugPrint('Failed to load recent activities: $e');
     }
   }
 
@@ -95,7 +96,7 @@ class ActivityLogger {
             : null,
       });
     } catch (e) {
-      print('Failed to persist activity log: $e');
+      debugPrint('Failed to persist activity log: $e');
       // Should we continue to update UI if DB failed?
       // Yes, generally better to show optimization even if persist failed,
       // but here the issue was race condition where UI tried to read from DB too early.
@@ -143,7 +144,7 @@ class ActivityLogger {
               ))
           .toList();
     } catch (e) {
-      print('Failed to load session activities: $e');
+      debugPrint('Failed to load session activities: $e');
       return [];
     }
   }
@@ -183,7 +184,7 @@ class ActivityLogger {
               ))
           .toList();
     } catch (e) {
-      print('Failed to load activities by type: $e');
+      debugPrint('Failed to load activities by type: $e');
       return [];
     }
   }
@@ -197,7 +198,7 @@ class ActivityLogger {
   /// - operations in chronological order
   /// - sessionClose comes last (bottom)
   Future<List<SessionActivityGroup>> getActivitiesGroupedBySession(
-      {int sessionLimit = 5}) async {
+      {int? sessionLimit = 5}) async {
     try {
       final db = PersistenceInitializer.persistenceManager!.sqliteManager;
 
@@ -207,7 +208,7 @@ class ActivityLogger {
         columns: ['DISTINCT session_id'],
         where: "session_id IS NOT NULL AND session_id != ''",
         orderBy: 'timestamp DESC',
-        limit: sessionLimit * 10, // Oversample to get enough unique sessions
+        limit: sessionLimit == null ? null : sessionLimit * 10,
       );
 
       // Deduplicate and take the requested limit
@@ -216,7 +217,7 @@ class ActivityLogger {
         final sid = row['session_id'] as String?;
         if (sid != null && sid.isNotEmpty && !sessionIds.contains(sid)) {
           sessionIds.add(sid);
-          if (sessionIds.length >= sessionLimit) break;
+          if (sessionLimit != null && sessionIds.length >= sessionLimit) break;
         }
       }
 
@@ -305,7 +306,7 @@ class ActivityLogger {
 
       return groups;
     } catch (e) {
-      print('Failed to get grouped activities: $e');
+      debugPrint('Failed to get grouped activities: $e');
       return [];
     }
   }
@@ -318,6 +319,12 @@ class ActivityLogger {
     try {
       final l10n = AppLocalizations.of(context);
       final parts = <String>[];
+      String formattedAmount(dynamic value) {
+        final amount = num.tryParse(value.toString());
+        return amount == null
+            ? value.toString()
+            : CurrencyFormatter.formatAmount(amount);
+      }
 
       switch (type) {
         case ActivityType.sale:
@@ -331,7 +338,7 @@ class ActivityLogger {
           }
           if (details['total'] != null) {
             parts.add(l10n.detailsTotal(
-                details['total'].toString(), l10n.currencyEg));
+                formattedAmount(details['total']), l10n.currencyEg));
           }
           break;
 
@@ -345,8 +352,11 @@ class ActivityLogger {
                 details['oldQty'].toString(), details['newQty'].toString()));
           }
           if (details['oldPrice'] != null && details['newPrice'] != null) {
-            parts.add(l10n.detailsPrice(details['oldPrice'].toString(),
-                details['newPrice'].toString()));
+            parts.add(l10n.detailsPrice(
+                CurrencyFormatter.formatKes(
+                    num.tryParse(details['oldPrice'].toString()) ?? 0),
+                CurrencyFormatter.formatKes(
+                    num.tryParse(details['newPrice'].toString()) ?? 0)));
           }
           break;
 
@@ -365,7 +375,7 @@ class ActivityLogger {
           }
           if (details['amount'] != null) {
             parts.add(l10n.detailsAmount(
-                details['amount'].toString(), l10n.currencyEg));
+                formattedAmount(details['amount']), l10n.currencyEg));
           }
           break;
 

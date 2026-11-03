@@ -4,7 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 class StoreSettingsModel {
-  static const String SINGLETON_ID = 'store_settings_singleton';
+  static const String singletonId = 'store_settings_singleton';
 
   final String id;
   final String storeName;
@@ -34,7 +34,7 @@ class StoreSettingsModel {
     this.lastInvoiceNumber = 0,
     DateTime? createdAt,
     DateTime? updatedAt,
-  })  : id = id ?? SINGLETON_ID,
+  })  : id = id ?? singletonId,
         createdAt = createdAt ?? DateTime.now(),
         updatedAt = updatedAt ?? DateTime.now();
 

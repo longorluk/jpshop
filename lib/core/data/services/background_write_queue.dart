@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 // lib/core/data/services/background_write_queue.dart
 
 import 'dart:async';
@@ -37,7 +38,7 @@ class BackgroundWriteQueue {
       _queue.remove(write);
     } catch (e) {
       _failedCount++;
-      print('Write operation failed after retries: $e');
+      debugPrint('Write operation failed after retries: $e');
     } finally {
       _isProcessing = false;
       

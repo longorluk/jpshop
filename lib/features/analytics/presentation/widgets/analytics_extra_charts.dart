@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class AnalyticsHourlyChart extends StatelessWidget {
   final Map<int, double> hourlySales;
@@ -95,7 +96,7 @@ class AnalyticsHourlyChart extends StatelessWidget {
                         final period = hour < 12 ? l10n.amLabel : l10n.pmLabel;
                         final h12 = hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour);
                         return BarTooltipItem(
-                          '$h12:00 $period\n${rod.toY.toInt()} ${l10n.currencyEg}',
+                          '$h12:00 $period\n${CurrencyFormatter.formatKes(rod.toY)}',
                           const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -369,7 +370,14 @@ class _AnalyticsSalesVsRefundChartState extends State<AnalyticsSalesVsRefundChar
                    child: const Icon(Icons.compare_arrows, color: AppColors.errorColor, size: 20),
                  ),
                  const SizedBox(width: 12),
-                 Text(l10n.returnRateLabel, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.kDarkChip)),
+                 Expanded(
+                   child: Text(
+                     l10n.returnRateLabel,
+                     maxLines: 2,
+                     overflow: TextOverflow.ellipsis,
+                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.kDarkChip),
+                   ),
+                 ),
               ],
             ),
             const SizedBox(height: 24),
@@ -406,7 +414,7 @@ class _AnalyticsSalesVsRefundChartState extends State<AnalyticsSalesVsRefundChar
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                          children: [
-                          _LegendItem(color: AppColors.successColor, text: l10n.netSoldLabel(netSales.toStringAsFixed(0))),
+                          _LegendItem(color: AppColors.successColor, text: l10n.netSoldLabel(CurrencyFormatter.formatKes(netSales))),
                           const SizedBox(height: 8),
                           _LegendItem(color: AppColors.errorColor, text: l10n.refundCountLabel(widget.refunds.toStringAsFixed(0))),
                        ],
@@ -432,7 +440,14 @@ class _LegendItem extends StatelessWidget {
       children: [
         Container(width: 12, height: 12, decoration: BoxDecoration(shape: BoxShape.circle, color: color)),
         const SizedBox(width: 8),
-        Text(text, style: const TextStyle(fontSize: 14, color: AppColors.textSecondary, fontWeight: FontWeight.w600)),
+        Expanded(
+          child: Text(
+            text,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 14, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+          ),
+        ),
       ],
     );
   }

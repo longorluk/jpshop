@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 // lib/core/data/services/data_path_resolver.dart
 
 import 'dart:io';
@@ -116,7 +117,7 @@ class DataPathResolver {
     final defaultParent = await _userOwnedDefaultParent();
     final defaultDataPath = path.join(defaultParent, 'BayaaData');
 
-    print('  🔍 Default data path suggested: $defaultDataPath');
+    debugPrint('  🔍 Default data path suggested: $defaultDataPath');
 
     // Show dialog
     String? result;
@@ -126,16 +127,16 @@ class DataPathResolver {
         lockParentWindow: false,
       );
     } catch (e) {
-      print('  ❌ FilePicker error: $e');
+      debugPrint('  ❌ FilePicker error: $e');
       result = null;
     }
 
-    print('  📥 FilePicker result: $result');
+    debugPrint('  📥 FilePicker result: $result');
     String selectedDirectory;
 
     if (result == null) {
       // User cancelled - use a user-owned, upgrade-safe default location.
-      print('  ℹ️ User cancelled folder selection. Using default: $defaultParent');
+      debugPrint('  ℹ️ User cancelled folder selection. Using default: $defaultParent');
       selectedDirectory = defaultParent;
       lastNotice = 'No folder was selected. Your data will be stored in:\n'
           '$defaultDataPath\n\n'
@@ -146,7 +147,7 @@ class DataPathResolver {
         lastNotice = null;
         lastError = 'Could not create the default data folder '
             '"$selectedDirectory": $e';
-        print('  ❌ $lastError');
+        debugPrint('  ❌ $lastError');
         FileLogger.error('Default data folder creation failed',
             error: e, source: 'DataPathResolver');
         return false;
@@ -162,14 +163,14 @@ class DataPathResolver {
 
     if (isBayaaDataFolder(selectedDirectory)) {
       // Case 1: User selected a folder that IS the BayaaData folder itself
-      print('  📂 User selected the BayaaData folder directly - using it as-is');
+      debugPrint('  📂 User selected the BayaaData folder directly - using it as-is');
       dataRoot = selectedDirectory;
       probeDir = Directory(selectedDirectory);
       isExisting = true;
     } else if (hasExistingData(selectedDirectory)) {
       // Case 2: User selected a parent folder that already contains BayaaData
       dataRoot = path.join(selectedDirectory, 'BayaaData');
-      print('  📂 Found existing BayaaData in selected folder: $dataRoot');
+      debugPrint('  📂 Found existing BayaaData in selected folder: $dataRoot');
       probeDir = Directory(dataRoot);
       isExisting = true;
     } else {
@@ -186,7 +187,7 @@ class DataPathResolver {
       lastNotice = null;
       lastError = 'Cannot write to "${probeDir.path}". '
           'Please choose a folder you have write access to. ($e)';
-      print('  ❌ $lastError');
+      debugPrint('  ❌ $lastError');
       FileLogger.error('Data path write test failed',
           error: e, source: 'DataPathResolver');
       return false;
@@ -205,7 +206,7 @@ class DataPathResolver {
     } catch (e, stack) {
       lastNotice = null;
       lastError = 'Failed to set up the data folder at "$dataRoot": $e';
-      print('  ❌ $lastError');
+      debugPrint('  ❌ $lastError');
       FileLogger.error('Data folder setup failed',
           error: e, stackTrace: stack, source: 'DataPathResolver');
       return false;
@@ -218,7 +219,7 @@ class DataPathResolver {
   /// Returns true if migration was successful.
   Future<bool> migrateData(String newParentPath) async {
     if (_dataRootPath == null) {
-      print('  ❌ Cannot migrate: no current data root path');
+      debugPrint('  ❌ Cannot migrate: no current data root path');
       return false;
     }
 
@@ -227,7 +228,7 @@ class DataPathResolver {
 
     // Don't migrate to the same location
     if (path.normalize(oldDataRoot) == path.normalize(newDataRoot)) {
-      print('  ℹ️ Source and destination are the same. No migration needed.');
+      debugPrint('  ℹ️ Source and destination are the same. No migration needed.');
       return true;
     }
 
@@ -235,15 +236,15 @@ class DataPathResolver {
     if (await Directory(newDataRoot).exists()) {
       final dbFile = File(path.join(newDataRoot, 'db', 'sales.db'));
       if (await dbFile.exists()) {
-        print('  ⚠️ Destination already contains data. Migration cancelled.');
+        debugPrint('  ⚠️ Destination already contains data. Migration cancelled.');
         return false;
       }
     }
 
     try {
-      print('  📦 Starting data migration...');
-      print('  📂 From: $oldDataRoot');
-      print('  📂 To: $newDataRoot');
+      debugPrint('  📦 Starting data migration...');
+      debugPrint('  📂 From: $oldDataRoot');
+      debugPrint('  📂 To: $newDataRoot');
       FileLogger.info('Starting data migration from $oldDataRoot to $newDataRoot', source: 'DataPathResolver');
 
       // Create destination
@@ -258,7 +259,7 @@ class DataPathResolver {
       if (await Directory(oldBackupPath).exists()) {
         await Directory(newBackupPath).create(recursive: true);
         await _copyDirectory(Directory(oldBackupPath), Directory(newBackupPath));
-        print('  ✅ Backup folder migrated');
+        debugPrint('  ✅ Backup folder migrated');
       }
 
       // Update config to new path
@@ -271,17 +272,17 @@ class DataPathResolver {
         if (await Directory(oldBackupPath).exists()) {
           await Directory(oldBackupPath).delete(recursive: true);
         }
-        print('  🗑️ Old data cleaned up');
+        debugPrint('  🗑️ Old data cleaned up');
       } catch (e) {
-        print('  ⚠️ Could not delete old data (not critical): $e');
+        debugPrint('  ⚠️ Could not delete old data (not critical): $e');
         FileLogger.warning('Could not delete old data after migration', error: e, source: 'DataPathResolver');
       }
 
-      print('  ✅ Data migration completed successfully');
+      debugPrint('  ✅ Data migration completed successfully');
       FileLogger.info('Data migration completed successfully to $newDataRoot', source: 'DataPathResolver');
       return true;
     } catch (e, stack) {
-      print('  ❌ Data migration failed: $e');
+      debugPrint('  ❌ Data migration failed: $e');
       FileLogger.error('Data migration failed', error: e, stackTrace: stack, source: 'DataPathResolver');
 
       // Remove the half-copied destination so it can't trip the

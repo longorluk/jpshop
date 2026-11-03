@@ -418,7 +418,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String detailsAmount(Object amount, Object currency) {
-    return 'Amount: $amount $currency';
+    return 'Amount: $currency $amount';
   }
 
   @override
@@ -1401,7 +1401,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String totalValueAmount(Object amount) {
-    return 'Total Value: $amount KES';
+    return 'Total Value: KES $amount';
   }
 
   @override
@@ -1500,10 +1500,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pdfQtyHeader => 'Qty';
 
   @override
-  String get pdfPriceHeader => 'Price';
+  String get pdfPriceHeader => 'Price (KES)';
 
   @override
-  String get pdfTotalHeader => 'Total';
+  String get pdfTotalHeader => 'Total (KES)';
 
   @override
   String get productNotFoundCubit => 'Product not found';
@@ -1513,7 +1513,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String priceBelowMin(Object price) {
-    return 'Price is below minimum ($price KES)';
+    return 'Price is below minimum (KES $price)';
   }
 
   @override

@@ -12,6 +12,7 @@ import '../../../../core/components/local_image_view.dart';
 import '../../../products/data/models/product_model.dart';
 import 'priorty_chip.dart';
 import 'status_chip.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class ProductCard extends StatefulWidget {
   final Product product;
@@ -188,7 +189,7 @@ class _ProductCardState extends State<ProductCard> {
                               ),
                               const SizedBox(height: 3),
                               Text(
-                                "${product.price.toStringAsFixed(2)} ${l10n.currencyEg}",
+                                "${CurrencyFormatter.formatKes(product.price)}",
                                 style: const TextStyle(
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w800,
@@ -315,6 +316,6 @@ class _ProductCardState extends State<ProductCard> {
 
   void disableMesg() {
     final l10n = AppLocalizations.of(context);
-    MotionSnackBarWarning(context, l10n.errAccessDenied);
+    motionSnackBarWarning(context, l10n.errAccessDenied);
   }
 }

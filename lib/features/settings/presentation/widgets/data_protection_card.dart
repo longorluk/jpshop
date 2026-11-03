@@ -42,7 +42,7 @@ class _DataProtectionCardState extends State<DataProtectionCard> {
       
       if (mounted) {
         final l10n = AppLocalizations.of(context);
-        MotionSnackBarSuccess(context, l10n.protectionActivated);
+        motionSnackBarSuccess(context, l10n.protectionActivated);
         
         // Restart app prompt
         showDialog(
@@ -61,7 +61,7 @@ class _DataProtectionCardState extends State<DataProtectionCard> {
       }
     } else {
       if (mounted) {
-        MotionSnackBarError(context, AppLocalizations.of(context).operationCancelled);
+        motionSnackBarError(context, AppLocalizations.of(context).operationCancelled);
       }
     }
   }
@@ -73,7 +73,7 @@ class _DataProtectionCardState extends State<DataProtectionCard> {
       _checkStatus();
       if (mounted) {
         final l10n = AppLocalizations.of(context);
-        MotionSnackBarSuccess(context, l10n.dataMigrationSuccess);
+        motionSnackBarSuccess(context, l10n.dataMigrationSuccess);
         
         showDialog(
           context: context,
@@ -100,7 +100,7 @@ class _DataProtectionCardState extends State<DataProtectionCard> {
       }
     } else {
       if (mounted) {
-        MotionSnackBarError(context, AppLocalizations.of(context).migrationFailed);
+        motionSnackBarError(context, AppLocalizations.of(context).migrationFailed);
       }
     }
   }

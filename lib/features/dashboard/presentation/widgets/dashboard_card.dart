@@ -18,6 +18,7 @@ import '../../../invoice/presentation/cubit/invoice_cubit.dart';
 import '../../../invoice/presentation/cubit/invoice_state.dart';
 import '../../../sessions/data/repositories/session_repository_impl.dart';
 import '../../../../core/services/activity_logger.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 
 class DashboardCard extends StatefulWidget {
@@ -220,7 +221,7 @@ class _DashboardCardState extends State<DashboardCard> {
                                                             
                                                             final netTotal = salesTotal - refundsTotal;
                                                             
-                                                            final val = netTotal.toStringAsFixed(0); 
+                                                            final val = CurrencyFormatter.formatKes(netTotal);
                                                             return _buildBadge(val);
                                                           },
                                                         )

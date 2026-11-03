@@ -73,7 +73,7 @@ class _AddEditUserDialogState extends State<AddEditUserDialog> {
     if (nameCtrl.text.trim().isEmpty ||
         usernameCtrl.text.trim().isEmpty ||
         (widget.userToEdit == null && passwordCtrl.text.trim().isEmpty)) {
-      MotionSnackBarError(context, l10n.fillRequiredFields);
+      motionSnackBarError(context, l10n.fillRequiredFields);
       return;
     }
 
@@ -103,17 +103,17 @@ class _AddEditUserDialogState extends State<AddEditUserDialog> {
       if (!mounted) return;
       if (widget.userToEdit == null) {
         getIt<UserCubit>().saveUser(user);
-        MotionSnackBarSuccess(context, l10n.msgUserCreated);
+        motionSnackBarSuccess(context, l10n.msgUserCreated);
       } else {
         getIt<UserCubit>().updateUser(user);
-        MotionSnackBarSuccess(context, l10n.msgUserUpdated);
+        motionSnackBarSuccess(context, l10n.msgUserUpdated);
       }
 
       Navigator.of(context).pop(user);
     } catch (_) {
       if (!mounted) return;
       setState(() => _isSubmitting = false);
-      MotionSnackBarError(
+      motionSnackBarError(
         context,
         l10n.localeName == 'ar'
             ? 'تعذر حفظ صورة الملف الشخصي'

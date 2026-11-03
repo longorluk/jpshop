@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 // lib/core/logging/file_logger.dart
 
 import 'dart:io';
@@ -55,7 +56,7 @@ class FileLogger {
       
       info('FileLogger initialized successfully');
     } catch (e) {
-      print('⚠️ Failed to initialize FileLogger: $e');
+      debugPrint('⚠️ Failed to initialize FileLogger: $e');
     }
   }
 
@@ -98,7 +99,7 @@ class FileLogger {
         await _rotateLog();
       }
     } catch (e) {
-      print('⚠️ Log rotation check failed: $e');
+      debugPrint('⚠️ Log rotation check failed: $e');
     }
   }
 
@@ -114,7 +115,7 @@ class FileLogger {
       
       info('Log file rotated');
     } catch (e) {
-      print('⚠️ Log rotation failed: $e');
+      debugPrint('⚠️ Log rotation failed: $e');
     }
   }
 
@@ -131,12 +132,12 @@ class FileLogger {
           final stat = await entity.stat();
           if (stat.modified.isBefore(cutoffDate)) {
             await entity.delete();
-            print('🗑️ Deleted old log: ${path.basename(entity.path)}');
+            debugPrint('🗑️ Deleted old log: ${path.basename(entity.path)}');
           }
         }
       }
     } catch (e) {
-      print('⚠️ Failed to clean old logs: $e');
+      debugPrint('⚠️ Failed to clean old logs: $e');
     }
   }
 
@@ -144,7 +145,7 @@ class FileLogger {
   Future<void> _writeLog(LogLevel level, String message, {Object? error, StackTrace? stackTrace, String? source}) async {
     if (_logSink == null) {
       // Fallback to console if logger not initialized
-      print('[${level.name.toUpperCase()}] $message');
+      debugPrint('[${level.name.toUpperCase()}] $message');
       return;
     }
 
@@ -180,7 +181,7 @@ class FileLogger {
       }
       await _logSink!.flush();
     } catch (e) {
-      print('⚠️ Failed to write to log: $e');
+      debugPrint('⚠️ Failed to write to log: $e');
     } finally {
       _isWriting = false;
     }
@@ -221,7 +222,7 @@ class FileLogger {
       await _logSink?.close();
       _logSink = null;
     } catch (e) {
-      print('⚠️ Error during logger shutdown: $e');
+      debugPrint('⚠️ Error during logger shutdown: $e');
     }
   }
 }

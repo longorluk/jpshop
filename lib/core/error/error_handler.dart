@@ -27,7 +27,7 @@ class ErrorHandler {
       
       final result = await operation();
       
-      return result.fold(
+      return await result.fold(
         (failure) {
           // Operation returned a Failure (business logic error)
           FileLogger.warning(

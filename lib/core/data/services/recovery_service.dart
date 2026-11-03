@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 // lib/core/data/services/recovery_service.dart
 
 import 'dart:io';
@@ -20,11 +21,11 @@ class RecoveryService {
   /// Run all recovery checks. Returns true if system is healthy or was recovered.
   Future<bool> check() async {
     if (!PersistenceInitializer.isEnabled) {
-      print('⚠️ Recovery check skipped: persistence not enabled');
+      debugPrint('⚠️ Recovery check skipped: persistence not enabled');
       return true;
     }
 
-    print('🔍 Running recovery checks...');
+    debugPrint('🔍 Running recovery checks...');
     FileLogger.info('Running recovery checks', source: 'Recovery');
 
     final issues = <String>[];
@@ -50,7 +51,7 @@ class RecoveryService {
     for (final dirPath in requiredDirs) {
       final dir = Directory(dirPath);
       if (!dir.existsSync()) {
-        print('  📁 Recreating missing directory: $dirPath');
+        debugPrint('  📁 Recreating missing directory: $dirPath');
         await dir.create(recursive: true);
         FileLogger.warning('Recreated missing directory: $dirPath', source: 'Recovery');
       }
@@ -64,7 +65,7 @@ class RecoveryService {
           issues.add('Database integrity check failed');
           FileLogger.error('Database integrity check failed', source: 'Recovery');
         } else {
-          print('  ✅ Database integrity OK');
+          debugPrint('  ✅ Database integrity OK');
         }
       } catch (e) {
         issues.add('Database integrity check error: $e');
@@ -75,41 +76,41 @@ class RecoveryService {
     // 4. Check config file
     final configPath = pathResolver.configFile;
     if (!File(configPath).existsSync()) {
-      print('  ⚠️ Config file missing, will be recreated on next save');
+      debugPrint('  ⚠️ Config file missing, will be recreated on next save');
       FileLogger.warning('Config file missing', source: 'Recovery');
       // Not critical — ConfigurationStorage creates defaults
     }
 
     // 5. If critical issues found, attempt restore
     if (issues.isNotEmpty) {
-      print('  ⚠️ Found ${issues.length} issue(s):');
+      debugPrint('  ⚠️ Found ${issues.length} issue(s):');
       for (final issue in issues) {
-        print('    - $issue');
+        debugPrint('    - $issue');
       }
 
       FileLogger.warning('Recovery: ${issues.length} issues found, attempting restore', source: 'Recovery');
 
       final restored = await CheckpointService().restoreFromLatestCheckpoint();
       if (restored) {
-        print('  ✅ Successfully restored from latest checkpoint');
+        debugPrint('  ✅ Successfully restored from latest checkpoint');
         FileLogger.info('Recovery: restored from checkpoint', source: 'Recovery');
         return true;
       } else {
         // Try backup manager
         final backupRestored = await PersistenceInitializer.persistenceManager!.backupManager.restoreFromLatestBackup();
         if (backupRestored) {
-          print('  ✅ Successfully restored from latest backup');
+          debugPrint('  ✅ Successfully restored from latest backup');
           FileLogger.info('Recovery: restored from backup', source: 'Recovery');
           return true;
         }
 
-        print('  ❌ No checkpoint or backup available for recovery');
+        debugPrint('  ❌ No checkpoint or backup available for recovery');
         FileLogger.error('Recovery: no restore source available', source: 'Recovery');
         return false;
       }
     }
 
-    print('  ✅ All recovery checks passed');
+    debugPrint('  ✅ All recovery checks passed');
     FileLogger.info('All recovery checks passed', source: 'Recovery');
     return true;
   }

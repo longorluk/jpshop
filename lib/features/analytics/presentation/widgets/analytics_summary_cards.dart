@@ -4,6 +4,7 @@ import '../../data/models/analytics_summary_model.dart';
 
 import 'package:barasa_softwares/core/constants/app_colors.dart';
 import 'package:barasa_softwares/l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class AnalyticsSummaryCards extends StatelessWidget {
   final AnalyticsSummaryModel summary;
@@ -25,7 +26,12 @@ class AnalyticsSummaryCards extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final crossAxisCount = isDesktop ? 5 : isTablet ? 2 : 1;
-          final childAspectRatio = isDesktop ? 1.6 : isTablet ? 1.8 : 2.2;
+          const crossAxisSpacing = 16.0;
+          final cardWidth = (constraints.maxWidth -
+                  crossAxisSpacing * (crossAxisCount - 1)) /
+              crossAxisCount;
+          final cardHeight = isDesktop ? 168.0 : isTablet ? 176.0 : 164.0;
+          final childAspectRatio = cardWidth / cardHeight;
 
           return Column(children: [
             GridView.count(
@@ -33,26 +39,26 @@ class AnalyticsSummaryCards extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: crossAxisCount,
               mainAxisSpacing: 16,
-              crossAxisSpacing: 16,
+              crossAxisSpacing: crossAxisSpacing,
               childAspectRatio: childAspectRatio,
               children: [
               _buildSummaryCard(
                 title: l10n.totalSalesAnalytics,
-                value: '${summary.totalRevenue.toStringAsFixed(2)} ${l10n.currencyEg}',
+                value: '${CurrencyFormatter.formatKes(summary.totalRevenue)}',
                 icon: Icons.trending_up,
                 color: const Color(0xFF10B981),
                 subtitle: l10n.salesCount(summary.totalSales),
               ),
               _buildSummaryCard(
                 title: l10n.costAnalytics,
-                value: '${summary.totalCost.toStringAsFixed(2)} ${l10n.currencyEg}',
+                value: '${CurrencyFormatter.formatKes(summary.totalCost)}',
                 icon: Icons.shopping_cart_outlined,
                 color: const Color(0xFFF59E0B),
                 subtitle: l10n.productsCost,
               ),
               _buildSummaryCard(
                 title: l10n.localeName == 'ar' ? 'المصروفات التشغيلية' : 'Operating expenses',
-                value: '${summary.totalExpenses.toStringAsFixed(2)} ${l10n.currencyEg}',
+                value: '${CurrencyFormatter.formatKes(summary.totalExpenses)}',
                 icon: Icons.account_balance_wallet_outlined,
                 color: const Color(0xFFEF4444),
                 subtitle: l10n.localeName == 'ar'
@@ -61,14 +67,14 @@ class AnalyticsSummaryCards extends StatelessWidget {
               ),
               _buildSummaryCard(
                 title: summary.isProfitable ? l10n.netProfitAnalytics : l10n.lossLabel,
-                value: '${summary.totalProfit.abs().toStringAsFixed(2)} ${l10n.currencyEg}',
+                value: '${CurrencyFormatter.formatKes(summary.totalProfit.abs())}',
                 icon: summary.isProfitable ? Icons.attach_money : Icons.money_off,
                 color: summary.isProfitable ? const Color(0xFF6366F1) : const Color(0xFFEF4444),
                 subtitle: l10n.marginLabel(summary.profitMargin.toStringAsFixed(1)),
               ),
               _buildSummaryCard(
                 title: l10n.avgSaleAnalytics,
-                value: '${summary.averageSaleValue.toStringAsFixed(2)} ${l10n.currencyEg}',
+                value: '${CurrencyFormatter.formatKes(summary.averageSaleValue)}',
                 icon: Icons.calculate_outlined,
                 color: const Color(0xFF8B5CF6),
                 subtitle: l10n.perSaleLabel,
@@ -106,7 +112,19 @@ class AnalyticsSummaryCards extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(child: ClipRRect(borderRadius: BorderRadius.circular(8), child: LinearProgressIndicator(value: item.$2 / maxValue, minHeight: 12, backgroundColor: item.$3.withOpacity(.08), valueColor: AlwaysStoppedAnimation(item.$3)))),
             const SizedBox(width: 10),
-            SizedBox(width: 90, child: Text(item.$2.toStringAsFixed(0), textAlign: TextAlign.end, style: const TextStyle(fontWeight: FontWeight.w800))),
+            SizedBox(
+              width: 90,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerEnd,
+                child: Text(
+                  CurrencyFormatter.formatKes(item.$2),
+                  textAlign: TextAlign.end,
+                  style: const TextStyle(fontWeight: FontWeight.w800),
+                  maxLines: 1,
+                ),
+              ),
+            ),
           ]),
         )),
       ]),
@@ -133,7 +151,7 @@ class AnalyticsSummaryCards extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,22 +182,34 @@ class AnalyticsSummaryCards extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: color,
+            SizedBox(
+              height: 30,
+              width: double.infinity,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                  maxLines: 1,
+                ),
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: const TextStyle(
-                fontSize: 12,
-                color: AppColors.mutedColor,
+            SizedBox(
+              height: 30,
+              child: Text(
+                subtitle,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: AppColors.mutedColor,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:barasa_softwares/features/auth/data/models/user_model.dart';
 import 'package:barasa_softwares/features/auth/domain/repository/user_repository_int.dart';
 import 'package:barasa_softwares/features/auth/presentation/cubit/user_states.dart';
@@ -14,6 +15,7 @@ import '../../../../core/session/session_manager.dart';
 import '../../../../core/data/services/checkpoint_service.dart';
 import '../../../sessions/data/models/product_performance_model.dart';
 import '../../../sessions/data/models/session_model.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class UserCubit extends Cubit<UserStates> {
   UserCubit({
@@ -41,7 +43,7 @@ class UserCubit extends Cubit<UserStates> {
       (failure) => emit(UserFailure(failure.message)),
       (usersList) async {
         if (usersList.isEmpty) {
-          print('ℹ️ No users found. Seeding default admin...');
+          debugPrint('ℹ️ No users found. Seeding default admin...');
           final defaultAdmin = User(
             username: 'admin',
             password: 'admin',
@@ -177,9 +179,7 @@ class UserCubit extends Cubit<UserStates> {
     result.fold(
       (failure) => emit(UserFailure(failure.message)),
       (user) async {
-        print("🔐 Login Attempt: '$trimmedUsername'");
-        print("   Input Password: '$trimmedPassword'");
-        print("   Stored Password: '${user.password}'");
+        debugPrint("🔐 Login Attempt: '$trimmedUsername'");
 
         if (user.password == trimmedPassword) {
           currentUser = user;
@@ -219,7 +219,7 @@ class UserCubit extends Cubit<UserStates> {
             emit(UserFailure("failedOpenDay:$e"));
           }
         } else {
-          print("   ❌ Password Mismatch!");
+          debugPrint("   ❌ Password Mismatch!");
           emit(UserFailure("wrongPassword"));
         }
       },
@@ -230,22 +230,22 @@ class UserCubit extends Cubit<UserStates> {
     emit(CloseSessionLoading());
     try {
       final sessionManager = getIt<SessionManager>();
-      print('DEBUG_SESSION: UserCubit.closeSession called');
-      print(
+      debugPrint('DEBUG_SESSION: UserCubit.closeSession called');
+      debugPrint(
           'DEBUG_SESSION: Manager.currentSession: ${sessionManager.currentSession?.id}');
-      print(
+      debugPrint(
           'DEBUG_SESSION: Repo.getCurrentSession: ${sessionRepository.getCurrentSession()?.id}');
 
       final session =
           sessionManager.currentSession; // Get pure object from manager/repo
 
       if (session == null || !session.isOpen) {
-        print(
+        debugPrint(
             'DEBUG_SESSION: No open session found in manager. Attempting loadSession...');
         // Try forcing a load just in case (e.g. if started sealed)
         await sessionManager.loadSession();
         if (sessionManager.currentSession == null) {
-          print(
+          debugPrint(
               'DEBUG_SESSION: Still no session after load. Emitting failure.');
           emit(UserFailure("noOpenSession"));
           return;
@@ -382,7 +382,7 @@ class UserCubit extends Cubit<UserStates> {
       // Log activity with session
       await getIt<ActivityLogger>().logActivity(
         type: ActivityType.sessionClose,
-        description: 'Closed day: ${totalSales.toStringAsFixed(2)} KES',
+        description: 'Closed day: ${CurrencyFormatter.formatKes(totalSales)}',
         userName: currentUser.name,
         sessionId: currentSessionToClose.id,
         eventKey: 'sessionClosed',

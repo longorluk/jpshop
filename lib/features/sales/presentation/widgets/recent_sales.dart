@@ -3,6 +3,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/constants/app_colors.dart';
 import 'package:barasa_softwares/l10n/app_localizations.dart';
+import 'package:barasa_softwares/core/utils/currency_formatter.dart';
 
 class RecentSalesSection extends StatelessWidget {
   final List<Map<String, dynamic>> recentSales;
@@ -175,7 +176,7 @@ class RecentSalesSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  l10n.saleItemsSummary(sale['items'], sale['total'].toStringAsFixed(0), l10n.currencyEg),
+                  l10n.saleItemsSummary(sale['items'], CurrencyFormatter.formatAmount(sale['total']), l10n.currencyEg),
                   style: TextStyle(
                     fontSize: 12,
                     color: color,
