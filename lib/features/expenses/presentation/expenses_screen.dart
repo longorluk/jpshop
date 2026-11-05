@@ -20,32 +20,29 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   final _repository = ExpenseRepository();
   late Future<List<Expense>> _expenses = _repository.getExpenses();
 
-  bool get _isArabic => Localizations.localeOf(context).languageCode == 'ar';
+  bool get _isArabic => false;
   AppLocalizations get _l10n => AppLocalizations.of(context);
 
   String _categoryLabel(String key) {
-    const aliases = {
-      'تشغيل': 'operations',
-      'إيجار': 'rent',
-      'مرافق': 'utilities',
-      'صيانة': 'maintenance',
-      'مشتريات': 'supplies',
-      'أخرى': 'other',
-      'General': 'other',
+    const labels = {
+      'operations': 'Operations', 'rent': 'Rent', 'utilities': 'Utilities',
+      'maintenance': 'Maintenance', 'supplies': 'Supplies', 'other': 'Other',
+      'General': 'Other',
     };
-    final normalized = aliases[key] ?? key;
-    final labels = _isArabic
-        ? const {
-            'operations': 'تشغيل', 'rent': 'إيجار', 'utilities': 'مرافق',
-            'maintenance': 'صيانة', 'supplies': 'مشتريات', 'other': 'أخرى',
-          }
-        : const {
-            'operations': 'Operations', 'rent': 'Rent', 'utilities': 'Utilities',
-            'maintenance': 'Maintenance', 'supplies': 'Supplies', 'other': 'Other',
-          };
-    return labels[normalized] ?? key;
+    return labels[key] ?? 'Other';
   }
-  void _reload() {
+
+  String _expenseTitle(Expense expense) {
+    const seededTitles = {
+      'debug_expense_rent': 'Shop rent',
+      'debug_expense_electricity': 'Electricity bill',
+      'debug_expense_internet': 'Internet and connectivity',
+      'debug_expense_delivery': 'Order shipping and delivery',
+      'debug_expense_maintenance': 'Repairs and equipment',
+      'debug_expense_supplies': 'Office and packaging supplies',
+    };
+    return seededTitles[expense.id] ?? expense.title;
+  }  void _reload() {
     final refreshedExpenses = _repository.getExpenses();
     setState(() {
       _expenses = refreshedExpenses;
@@ -318,7 +315,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                 const SizedBox(height: 4),
                 Text(
                     money
-                        ? '${CurrencyFormatter.formatKes(value)}'
+                        ? CurrencyFormatter.formatKes(value)
                         : value.toInt().toString(),
                     style: const TextStyle(
                         fontSize: 19, fontWeight: FontWeight.w800))
@@ -396,12 +393,12 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                       backgroundColor: Color(0xFFFFF1F2),
                       child: Icon(LucideIcons.receiptText,
                           color: AppColors.errorColor, size: 19)),
-                  title: Text(item.title,
+                  title: Text(_expenseTitle(item),
                       style: const TextStyle(fontWeight: FontWeight.w700)),
                   subtitle: Text(
                       '${_categoryLabel(item.category)}  •  ${DateFormat('dd/MM/yyyy').format(item.date)}'),
                   trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Text('${CurrencyFormatter.formatKes(item.amount)}',
+                    Text(CurrencyFormatter.formatKes(item.amount),
                         style: const TextStyle(
                             fontWeight: FontWeight.w800,
                             color: AppColors.errorColor)),

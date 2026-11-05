@@ -164,7 +164,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               Expanded(
                 child: _SummaryCard(
                   title: l10n.totalHistoricValue,
-                  value: "${CurrencyFormatter.formatKes(state.totalStoreHistoricValue)}",
+                  value: CurrencyFormatter.formatKes(state.totalStoreHistoricValue),
                   icon: LucideIcons.history,
                   color: AppColors.secondaryColor,
                   tooltip: l10n.historicValueTooltip,
@@ -174,7 +174,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               Expanded(
                 child: _SummaryCard(
                   title: l10n.currentWholesaleValue,
-                  value: "${CurrencyFormatter.formatKes(state.totalStoreCurrentValue)}",
+                  value: CurrencyFormatter.formatKes(state.totalStoreCurrentValue),
                   icon: LucideIcons.package,
                   color: AppColors.primaryColor,
                   tooltip: l10n.currentWholesaleTooltip,
@@ -184,7 +184,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               Expanded(
                 child: _SummaryCard(
                   title: l10n.expectedProfit,
-                  value: "${CurrencyFormatter.formatKes(state.totalExpectedProfit)}",
+                  value: CurrencyFormatter.formatKes(state.totalExpectedProfit),
                   icon: LucideIcons.trendingUp,
                   color: AppColors.successColor,
                   tooltip: l10n.expectedProfitTooltip,
@@ -197,7 +197,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
             children: [
               _SummaryCard(
                 title: l10n.totalHistoricValue,
-                value: "${CurrencyFormatter.formatKes(state.totalStoreHistoricValue)}",
+                value: CurrencyFormatter.formatKes(state.totalStoreHistoricValue),
                 icon: LucideIcons.history,
                 color: AppColors.secondaryColor,
                 tooltip: l10n.historicValueTooltip,
@@ -205,7 +205,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               const SizedBox(height: 12),
               _SummaryCard(
                 title: l10n.currentWholesaleValue,
-                value: "${CurrencyFormatter.formatKes(state.totalStoreCurrentValue)}",
+                value: CurrencyFormatter.formatKes(state.totalStoreCurrentValue),
                 icon: LucideIcons.package,
                 color: AppColors.primaryColor,
                 tooltip: l10n.currentWholesaleTooltip,
@@ -213,7 +213,7 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
               const SizedBox(height: 12),
               _SummaryCard(
                 title: l10n.expectedProfit,
-                value: "${CurrencyFormatter.formatKes(state.totalExpectedProfit)}",
+                value: CurrencyFormatter.formatKes(state.totalExpectedProfit),
                 icon: LucideIcons.trendingUp,
                 color: AppColors.successColor,
                 tooltip: l10n.expectedProfitTooltip,
@@ -511,19 +511,19 @@ class _StockSummaryScreenState extends State<StockSummaryScreen> {
                 )),
                 DataCell(Center(
                   child: Text(
-                    "${CurrencyFormatter.formatKes(item.totalHistoricValue)}",
+                    CurrencyFormatter.formatKes(item.totalHistoricValue),
                     style: const TextStyle(fontFamily: 'Cairo', fontSize: 12.5, color: AppColors.textSecondary),
                   ),
                 )),
                 DataCell(Center(
                   child: Text(
-                    "${CurrencyFormatter.formatKes(item.totalCurrentWholesaleValue)}",
+                    CurrencyFormatter.formatKes(item.totalCurrentWholesaleValue),
                     style: const TextStyle(fontFamily: 'Cairo', fontSize: 12.5, color: AppColors.primaryColor, fontWeight: FontWeight.bold),
                   ),
                 )),
                 DataCell(Center(
                   child: Text(
-                    "${CurrencyFormatter.formatKes(item.totalDefaultSellValue)}",
+                    CurrencyFormatter.formatKes(item.totalDefaultSellValue),
                     style: const TextStyle(fontFamily: 'Cairo', fontSize: 12.5, color: AppColors.secondaryColor, fontWeight: FontWeight.bold),
                   ),
                 )),
@@ -959,7 +959,7 @@ class _StockSummaryChartsState extends State<StockSummaryCharts> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            isQty ? l10n.unitCount(e.value.toInt()) : "${CurrencyFormatter.formatKes(e.value)}",
+                            isQty ? l10n.unitCount(e.value.toInt()) : CurrencyFormatter.formatKes(e.value),
                             style: TextStyle(
                               fontFamily: 'Cairo',
                               fontSize: 10.5,

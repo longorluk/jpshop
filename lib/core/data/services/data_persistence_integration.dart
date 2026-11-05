@@ -4,6 +4,8 @@
 /// 
 /// This class provides backward compatibility - your existing Hive-based code continues to work,
 /// and the new persistence system runs alongside it.
+library;
+
 import 'package:flutter/foundation.dart' show debugPrint;
 
 import 'persistence_initializer.dart';

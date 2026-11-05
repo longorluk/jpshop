@@ -194,7 +194,7 @@ class _InvoiceCardState extends State<InvoiceCard> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              '${CurrencyFormatter.formatKes(sale.total)}',
+              CurrencyFormatter.formatKes(sale.total),
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 18,
@@ -292,7 +292,7 @@ class _InvoiceCardState extends State<InvoiceCard> {
               ),
             ),
             Text(
-              '${CurrencyFormatter.formatKes(sale.total)}',
+              CurrencyFormatter.formatKes(sale.total),
               style: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 15,

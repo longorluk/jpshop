@@ -238,7 +238,7 @@ class InvoicePdfService {
               // Totals
               _receiptMetaRow(
                   l10n.itemsTotalLabel,
-                  '${CurrencyFormatter.formatKes(data.subtotal)}',
+                  CurrencyFormatter.formatKes(data.subtotal),
                   arabicFont,
                   boldFont,
                   fontSize: 8.5),
@@ -253,7 +253,7 @@ class InvoicePdfService {
               if (data.tax > 0)
                 _receiptMetaRow(
                     l10n.valueAddedTax,
-                    '${CurrencyFormatter.formatKes(data.tax)}',
+                    CurrencyFormatter.formatKes(data.tax),
                     arabicFont,
                     boldFont,
                     fontSize: 8.5),
@@ -266,7 +266,7 @@ class InvoicePdfService {
 
               _receiptMetaRow(
                 l10n.grandTotalLabelPdf,
-                '${CurrencyFormatter.formatKes(data.grandTotal)}',
+                CurrencyFormatter.formatKes(data.grandTotal),
                 boldFont,
                 boldFont,
                 fontSize: 11,
@@ -689,7 +689,7 @@ class InvoicePdfService {
             children: [
               _summaryRow(
                   l10n.subtotalLabel,
-                  '${CurrencyFormatter.formatKes(data.subtotal)}',
+                  CurrencyFormatter.formatKes(data.subtotal),
                   regular,
                   regular,
                   textDark),
@@ -703,7 +703,7 @@ class InvoicePdfService {
               if (data.tax > 0)
                 _summaryRow(
                     l10n.valueAddedTax,
-                    '${CurrencyFormatter.formatKes(data.tax)}',
+                    CurrencyFormatter.formatKes(data.tax),
                     regular,
                     regular,
                     textDark),
@@ -724,7 +724,7 @@ class InvoicePdfService {
                           font: bold, fontSize: 11, color: PdfColors.white),
                     ),
                     pw.Text(
-                      '${CurrencyFormatter.formatKes(data.grandTotal)}',
+                      CurrencyFormatter.formatKes(data.grandTotal),
                       style: pw.TextStyle(
                           font: bold, fontSize: 12, color: PdfColors.white),
                     ),

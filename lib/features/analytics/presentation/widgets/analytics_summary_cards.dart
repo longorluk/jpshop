@@ -44,21 +44,21 @@ class AnalyticsSummaryCards extends StatelessWidget {
               children: [
               _buildSummaryCard(
                 title: l10n.totalSalesAnalytics,
-                value: '${CurrencyFormatter.formatKes(summary.totalRevenue)}',
+                value: CurrencyFormatter.formatKes(summary.totalRevenue),
                 icon: Icons.trending_up,
                 color: const Color(0xFF10B981),
                 subtitle: l10n.salesCount(summary.totalSales),
               ),
               _buildSummaryCard(
                 title: l10n.costAnalytics,
-                value: '${CurrencyFormatter.formatKes(summary.totalCost)}',
+                value: CurrencyFormatter.formatKes(summary.totalCost),
                 icon: Icons.shopping_cart_outlined,
                 color: const Color(0xFFF59E0B),
                 subtitle: l10n.productsCost,
               ),
               _buildSummaryCard(
                 title: l10n.localeName == 'ar' ? 'المصروفات التشغيلية' : 'Operating expenses',
-                value: '${CurrencyFormatter.formatKes(summary.totalExpenses)}',
+                value: CurrencyFormatter.formatKes(summary.totalExpenses),
                 icon: Icons.account_balance_wallet_outlined,
                 color: const Color(0xFFEF4444),
                 subtitle: l10n.localeName == 'ar'
@@ -67,14 +67,14 @@ class AnalyticsSummaryCards extends StatelessWidget {
               ),
               _buildSummaryCard(
                 title: summary.isProfitable ? l10n.netProfitAnalytics : l10n.lossLabel,
-                value: '${CurrencyFormatter.formatKes(summary.totalProfit.abs())}',
+                value: CurrencyFormatter.formatKes(summary.totalProfit.abs()),
                 icon: summary.isProfitable ? Icons.attach_money : Icons.money_off,
                 color: summary.isProfitable ? const Color(0xFF6366F1) : const Color(0xFFEF4444),
                 subtitle: l10n.marginLabel(summary.profitMargin.toStringAsFixed(1)),
               ),
               _buildSummaryCard(
                 title: l10n.avgSaleAnalytics,
-                value: '${CurrencyFormatter.formatKes(summary.averageSaleValue)}',
+                value: CurrencyFormatter.formatKes(summary.averageSaleValue),
                 icon: Icons.calculate_outlined,
                 color: const Color(0xFF8B5CF6),
                 subtitle: l10n.perSaleLabel,

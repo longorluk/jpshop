@@ -271,7 +271,7 @@ class _PartialRefundDialogState extends State<PartialRefundDialog> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    '${CurrencyFormatter.formatKes(totalRefundAmount)}',
+                    CurrencyFormatter.formatKes(totalRefundAmount),
                     style: const TextStyle(
                       color: AppColors.errorColor,
                       fontSize: 20,
@@ -486,7 +486,7 @@ class _PartialRefundDialogState extends State<PartialRefundDialog> {
         ),
         DataCell(
           Text(
-            '${CurrencyFormatter.formatKes(subtotal)}',
+            CurrencyFormatter.formatKes(subtotal),
             style: TextStyle(
               color: hasSelection ? AppColors.errorColor : AppColors.mutedColor,
               fontWeight: FontWeight.w700,

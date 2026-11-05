@@ -130,7 +130,7 @@ class DailyReportPdfService {
               boldFont),
           _infoItem(
               l10n.netRevenueLabel,
-              '${CurrencyFormatter.formatKes(report.netRevenue)}',
+              CurrencyFormatter.formatKes(report.netRevenue),
               boldFont),
         ],
       ),
@@ -169,15 +169,15 @@ class DailyReportPdfService {
     final summaries = [
       _summaryBox(
           l10n.totalSalesLabel,
-          '${CurrencyFormatter.formatKes(report.totalSales)}',
+          CurrencyFormatter.formatKes(report.totalSales),
           boldFont),
       _summaryBox(
           l10n.totalRefundsLabel,
-          '${CurrencyFormatter.formatKes(report.totalRefunds)}',
+          CurrencyFormatter.formatKes(report.totalRefunds),
           boldFont),
       _summaryBox(
           l10n.netProfitLabel,
-          '${CurrencyFormatter.formatKes(report.netRevenue)}',
+          CurrencyFormatter.formatKes(report.netRevenue),
           boldFont),
       _summaryBox(
           l10n.transactionCountLabel, '${report.totalTransactions}', boldFont),

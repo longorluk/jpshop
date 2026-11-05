@@ -312,12 +312,12 @@ class DebugSeeder {
       }
 
       final expenseSamples = [
-        ('rent', 'إيجار المحل', 6200.0, 'rent', 6),
-        ('electricity', 'فاتورة الكهرباء', 1450.0, 'utilities', 4),
-        ('internet', 'الإنترنت والاتصالات', 780.0, 'utilities', 3),
-        ('delivery', 'شحن وتوصيل طلبات', 560.0, 'operations', 2),
-        ('maintenance', 'صيانة وتجهيزات', 900.0, 'maintenance', 1),
-        ('supplies', 'أدوات مكتبية وتغليف', 430.0, 'supplies', 0),
+        ('rent', 'Shop rent', 6200.0, 'rent', 6),
+        ('electricity', 'Electricity bill', 1450.0, 'utilities', 4),
+        ('internet', 'Internet and connectivity', 780.0, 'utilities', 3),
+        ('delivery', 'Order shipping and delivery', 560.0, 'operations', 2),
+        ('maintenance', 'Repairs and equipment', 900.0, 'maintenance', 1),
+        ('supplies', 'Office and packaging supplies', 430.0, 'supplies', 0),
       ];
       for (final sample in expenseSamples) {
         await txn.insert('expenses', {

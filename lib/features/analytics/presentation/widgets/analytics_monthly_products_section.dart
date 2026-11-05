@@ -231,7 +231,7 @@ class _AnalyticsMonthlyProductsSectionState
                       ),
                       const Spacer(),
                       Text(
-                        '${CurrencyFormatter.formatKes(widget.monthlySales[_selectedMonth]!)}',
+                        CurrencyFormatter.formatKes(widget.monthlySales[_selectedMonth]!),
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -339,7 +339,7 @@ class _AnalyticsMonthlyProductsSectionState
                         ),
                       ),
                       Text(
-                        '${CurrencyFormatter.formatKes(product.revenue)}',
+                        CurrencyFormatter.formatKes(product.revenue),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,

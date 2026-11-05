@@ -301,7 +301,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                 }
                 return _buildStatCard(
                   title: l10n.todaySalesNet,
-                  value: "${CurrencyFormatter.formatKes(totalSales)}",
+                  value: CurrencyFormatter.formatKes(totalSales),
                   icon: LucideIcons.trendingUp,
                   color: AppColors.primaryColor,
                   subtitle: isArabic ? 'اليوم' : 'Today',
@@ -354,7 +354,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                 final total = snapshot.data ?? 0;
                 return _buildStatCard(
                   title: isArabic ? 'مصروفات اليوم' : 'Today Expenses',
-                  value: '${CurrencyFormatter.formatKes(total)}',
+                  value: CurrencyFormatter.formatKes(total),
                   icon: LucideIcons.walletCards,
                   color: AppColors.errorColor,
                   subtitle: isArabic ? 'تشغيل' : 'Operating',
@@ -586,7 +586,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                         getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
                           return touchedBarSpots.map((barSpot) {
                             return LineTooltipItem(
-                              '${CurrencyFormatter.formatKes(barSpot.y)}',
+                              CurrencyFormatter.formatKes(barSpot.y),
                               const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

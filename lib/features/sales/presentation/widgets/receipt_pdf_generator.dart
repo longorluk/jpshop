@@ -64,7 +64,7 @@ class ReceiptPdfGenerator {
               pw.Divider(),
               _buildItemsTable(sale.saleItems, bold, regular, isThermal, l10n),
               pw.Divider(),
-              _buildRow(l10n.grandTotalLabelPdf, '${CurrencyFormatter.formatKes(sale.total)}', bold, fontSize: 14),
+              _buildRow(l10n.grandTotalLabelPdf, CurrencyFormatter.formatKes(sale.total), bold, fontSize: 14),
               pw.SizedBox(height: 10),
               pw.Text(l10n.thankYouShopping, style: pw.TextStyle(font: regular, fontSize: 10)),
               if (storeInfo.vat.isNotEmpty)

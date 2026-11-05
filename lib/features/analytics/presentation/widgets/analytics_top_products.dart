@@ -152,7 +152,7 @@ class AnalyticsTopProducts extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        '${CurrencyFormatter.formatKes(product.revenue)}',
+                        CurrencyFormatter.formatKes(product.revenue),
                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppColors.primaryColor),
                       ),
                     ],

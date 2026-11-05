@@ -251,7 +251,7 @@ class _RecentOperationsTableState extends State<RecentOperationsTable> {
                           Expanded(
                             flex: 3,
                             child: Text(
-                              '${CurrencyFormatter.formatKes(sale.total)}',
+                              CurrencyFormatter.formatKes(sale.total),
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,

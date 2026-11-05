@@ -1606,7 +1606,7 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen>
                 children: [
                   _buildReportStat(
                     l10n.netSales,
-                    '${CurrencyFormatter.formatKes(report.netRevenue)}',
+                    CurrencyFormatter.formatKes(report.netRevenue),
                     const Color(0xFF059669),
                     LucideIcons.trendingUp,
                   ),
@@ -1620,7 +1620,7 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen>
                   _buildReportStatDivider(),
                   _buildReportStat(
                     l10n.refunds,
-                    '${CurrencyFormatter.formatKes(report.totalRefunds)}',
+                    CurrencyFormatter.formatKes(report.totalRefunds),
                     AppColors.errorColor,
                     LucideIcons.cornerUpLeft,
                   ),

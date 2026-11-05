@@ -189,7 +189,7 @@ class _ProductCardState extends State<ProductCard> {
                               ),
                               const SizedBox(height: 3),
                               Text(
-                                "${CurrencyFormatter.formatKes(product.price)}",
+                                CurrencyFormatter.formatKes(product.price),
                                 style: const TextStyle(
                                   fontFamily: 'Cairo',
                                   fontWeight: FontWeight.w800,
